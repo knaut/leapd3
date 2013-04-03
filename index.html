@@ -1,0 +1,47 @@
+<html>
+
+	<head>
+		<title>Leap JavaScript Sample</title>
+		<script src="leap.js"></script>
+		<script>// JavaScript code goes here</script>
+
+		<script>
+
+			var controllerOptions = {
+				enableGestures: true;
+			}
+
+			Leap.loop(controllerOptions, function(frame) {
+				// body of callback function
+			})
+
+
+
+		</script>
+
+	</head>
+
+	<body onload="checkLibrary()">
+		<h1>Leap JavaScript Sample</h1>
+
+		<div id="main">
+			<h3>Frame data:</h3>
+			<div id="frameData"></div>
+			<div style="clear:both;"></div>
+
+			<h3>Hand data:</h3>
+			<div id="handData"></div>
+			<div style="clear:both;"></div>
+
+			<h3>Finger and tool data:</h3>
+			<div id="pointableData"></div>
+			<div style="clear:both;"></div>
+
+			<h3>Gesture data:</h3>
+			<div id="gestureData"></div>
+
+		</div>
+
+	</body>
+
+</html>

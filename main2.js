@@ -4,9 +4,26 @@ var pauseOnGesture = false;
 
 var controllerOptions = { enableGestures: true };
 
+function togglePause() {
+  paused = !paused;
+
+  if (paused) {
+	document.getElementById("pause").innerText = "Resume";
+  } else {
+	document.getElementById("pause").innerText = "Pause";
+  }
+}
+
+// program
+
+var fingerLengths = [];
+
 var k = {
+	fingerVis: null,
 
 	init: function() {
+
+		fingerVis = d3.select('#finger-vis').selectAll('rect');
 
 		// start our leap loop
 		k.leapLoop();
@@ -17,16 +34,19 @@ var k = {
 
 		thisFrameData = frameData;
 
+		// here's the secret sauce
+		fingerVis.data( thisFrameData.fingers )
+			.attr('height', function(d) {
+				return d.length;
+			});
+		
 		for ( i = 0; i < thisFrameData.fingers.length; i++ ) {
 
-			thisFrameData.fingers.filter( function(el) {
-				
+			//console.log( thisFrameData.fingers[i] );
 
-					console.log( 'el.length: ' + el.length );
-					return el.length;
-				
-				
-			});
+			//console.log( 'how many fingers: ' + thisFrameData.fingers.length );
+
+			
 		}
 	},
 
@@ -34,11 +54,17 @@ var k = {
 
 		 Leap.loop(controllerOptions, function(frame) {
 
-		 	k.prepData( frame );
 
-		 	// save the frame
+		 	if (paused) {
+				return; // Skip this update
+			}
+
+			k.prepData( frame );
+		 	
 		 	prevFrame = frame;
 
 		 });
+
+		
 	}
 }

@@ -52,19 +52,26 @@ var k = {
 
 	leapLoop: function() {
 
+
+
 		 Leap.loop(controllerOptions, function(frame) {
 
 
 		 	if (paused) {
 				return; // Skip this update
 			}
-
-			k.prepData( frame );
 		 	
 		 	prevFrame = frame;
 
 		 });
 
+		interval = setInterval( function() {
+
+			console.log( prevFrame );
+
+			k.prepData( prevFrame );
+
+		}, 1000);
 		
 	}
 }

@@ -101,6 +101,9 @@ body {
     min-height: 10px;
     max-height: 200px;
     margin-right: 10px; }
+  #finger-vis rect {
+    float: left;
+    margin-right: 5px; }
 
 .finger-svgs {
   width: 50px;

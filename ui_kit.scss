@@ -1,0 +1,1266 @@
+// ui_kit
+
+// with 3L adapted for sass: http://mateuszkocz.github.com/3l/
+
+// transition
+@mixin transition ( $arguments	) 
+{
+	-webkit-transition: $arguments;
+	-moz-transition: $arguments;
+	-ms-transition: $arguments;
+	-o-transition: $arguments;
+	transition: $arguments;
+}
+
+// transforms
+@mixin transformOrigin ( $arguments	) 
+{
+	-webkit-transform-origin: $arguments;
+	-moz-transform-origin: $arguments;
+	-ms-transform-origin: $arguments;
+	-o-transform-origin: $arguments;
+	transform-origin: $arguments;
+}
+
+@mixin perspective ( $arguments	) 
+{
+	-webkit-perspective: $arguments;
+	-moz-perspective: $arguments;
+	-o-perspective: $arguments;
+	perspective: $arguments;
+}
+
+@mixin transform ( $arguments	) 
+{
+	-webkit-transform: $arguments;
+	-moz-transform: $arguments;
+	-ms-transform: $arguments;
+	-o-transform: $arguments;
+	transform: $arguments;
+}
+
+@mixin transform3d ( $arguments	) 
+{
+	-webkit-transform: $arguments;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform: $arguments;
+	-moz-transform-style: preserve-3d;
+	-o-transform: $arguments;
+	-o-transform-style: preserve-3d;
+	transform: $arguments;
+	transform-style: preserve-3d;
+}
+
+@mixin rotate (	$rotate	) 
+{
+	-webkit-transform: rotate($rotate);
+	-moz-transform: rotate($rotate);
+	-ms-transform: rotate($rotate);
+	-o-transform: rotate($rotate);
+	transform: rotate($rotate);
+}
+
+@mixin rotate3d ( $deg1: 0, $deg2: 0, $deg3: 0)
+{
+	-webkit-transform: rotateX($deg1) rotateY($deg2) rotateZ($deg3);
+	-webkit-transform-style: preserve-3d;
+	-moz-transform: rotateX($deg1) rotateY($deg2) rotateZ($deg3);
+	-moz-transform-style: preserve-3d;
+	-o-transform: rotateX($deg1) rotateY($deg2) rotateZ($deg3);
+	-o-transform-style: preserve-3d;
+	transform: rotateX($deg1) rotateY($deg2) rotateZ($deg3);
+	transform-style: preserve-3d;
+}
+
+@mixin scale ( $scale	) 
+{
+	-webkit-transform: scale($scale);
+	-moz-transform: scale($scale);
+	-ms-transform: scale($scale);
+	-o-transform: scale($scale);
+	transform: scale($scale);
+}
+
+@mixin scale ( $scale1, $scale2 ) 
+{
+	-webkit-transform: scale($scale1,$scale2);
+	-moz-transform: scale($scale1,$scale2);
+	-ms-transform: scale($scale1,$scale2);
+	-o-transform: scale($scale1,$scale2);
+	transform: scale($scale1,$scale2);
+}
+
+@mixin scaleX (	$scale ) 
+{
+	-webkit-transform: scaleX($scale);
+	-moz-transform: scaleX($scale);
+	-ms-transform: scaleX($scale);
+	-o-transform: scaleX($scale);
+	transform: scaleX($scale);
+}
+
+@mixin scaleY (	$scale ) 
+{
+	-webkit-transform: scaleY($scale);
+	-moz-transform: scaleY($scale);
+	-ms-transform: scaleY($scale);
+	-o-transform: scaleY($scale);
+	transform: scaleY($scale);
+}
+
+@mixin skew ( $skew ) 
+{
+	-webkit-transform: skew($skew);
+	-moz-transform: skew($skew);
+	-ms-transform: skew($skew);
+	-o-transform: skew($skew);
+	transform: skew($skew);
+}
+
+@mixin skew ( $skew1, $skew2 ) 
+{
+	-webkit-transform: skew($skew1, $skew2);
+	-moz-transform: skew($skew1, $skew2);
+	-ms-transform: skew($skew1, $skew2);
+	-o-transform: skew($skew1, $skew2);
+	transform: skew($skew1, $skew2);
+}
+
+@mixin skewX ( $skew ) 
+{
+	-webkit-transform: skewX($skew);
+	-moz-transform: skewX($skew);
+	-ms-transform: skewX($skew);
+	-o-transform: skewX($skew);
+	transform: skewX($skew);
+}
+
+@mixin skewY (	$skew	) 
+{
+	-webkit-transform: skewY($skew);
+	-moz-transform: skewY($skew);
+	-ms-transform: skewY($skew);
+	-o-transform: skewY($skew);
+	transform: skewY($skew);
+}
+
+@mixin translate (	$translate	) 
+{
+	-webkit-transform: translate($translate);
+	-moz-transform: translate($translate);
+	-ms-transform: translate($translate);
+	-o-transform: translate($translate);
+	transform: translate($translate);
+}
+
+@mixin translate (	$translate1, $translate2	) 
+{
+	-webkit-transform: translate($translate1, $translate2);
+	-moz-transform: translate($translate1, $translate2);
+	-ms-transform: translate($translate1, $translate2);
+	-o-transform: translate($translate1, $translate2);
+	transform: translate($translate1, $translate2);
+}
+
+@mixin translateX (	$translate	) 
+{
+	-webkit-transform: translateX($translate);
+	-moz-transform: translateX($translate);
+	-ms-transform: translateX($translate);
+	-o-transform: translateX($translate);
+	transform: translateX($translate);
+}
+
+@mixin translateY (	$translate	) 
+{
+	-webkit-transform: translateY($translate);
+	-moz-transform: translateY($translate);
+	-ms-transform: translateY($translate);
+	-o-transform: translateY($translate);
+	transform: translateY($translate);
+}
+
+// animations
+@mixin animation ( $arguments ) 
+{
+	-webkit-animation: $arguments;
+	-moz-animation: $arguments;
+	-o-animation: $arguments;
+	animation: $arguments;
+}
+
+@mixin animate ( $arguments ) 
+{
+	@include animation ($arguments);
+}
+
+@mixin anime ( $arguments ) 
+{
+	@include animation ($arguments);
+}
+
+@mixin animationFill ( $arguments: forwards )
+{
+	-webkit-animation-fill-mode: $arguments;
+	-moz-animation-fill-mode: $arguments;
+	animation-fill-mode: $arguments;
+}
+
+@mixin animationDirection ( $arguments: normal )
+{
+	-webkit-animation-direction: $arguments;
+	-moz-animation-direction: $arguments;
+	-o-animation-direction: $arguments;
+	animation-direction: $arguments;
+}
+
+@mixin animateFill ( $arguments: forwards )
+{
+	@include animationFill ( $arguments );
+}
+
+@mixin animationPlayState ( $arguments: running )
+{
+	-webkit-animation-play-state: $arguments;
+	-moz-animation-play-state: $arguments;
+	animation-play-state: $arguments;
+}
+
+@mixin animatePlayState ( $arguments: running )
+{
+	@include animationPlayState ( $arguments );
+}
+
+// typical animation template:
+
+// @mixin animltor () {
+// 	from {	left: 0; }
+// 	to { 	left: 200px; }
+// }
+
+// @mixin animrtol () {
+// 	from {	left: 200px; }
+// 	to { 	left: 0; }
+// }
+
+// @-webkit-keyframes 	animltor 	{	@include animltor ();	}
+// @-moz-keyframes 	animltor 	{	@include animltor ();	}
+// @-o-keyframes 		animltor	{	@include animltor ();	}
+// @keyframes 			animltor	{	@include animltor ();	}
+
+// @-webkit-keyframes 	animrtol 	{	@include animrtol ();	}
+// @-moz-keyframes 	animrtol 	{	@include animrtol ();	}
+// @-o-keyframes 		animrtol 	{	@include animrtol ();	}
+// @keyframes 			animrtol	{	@include animrtol ();	}
+
+// example animation includes
+
+// .anim-ltor {
+// 	.animate ( .5s animltor ease-in-out );
+// 	.animateFill ();
+// 	.animatePlayState ();
+// }
+
+// .anim-rtol {
+// 	.animate ( .5s animrtol ease-in-out );
+// 	.animateFill ();
+// 	.animatePlayState ();
+// }
+
+// gradients
+
+@mixin basicGr (	$firstColor: #ffffff,
+					$secondColor: #f1f1f1	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%, $firstColor), 
+									color-stop(100%, $secondColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+	// ie support disabled until converted for sass syntax - check online
+}
+
+// box fx
+@mixin borderRads ( $radii: 5px )
+{
+	-webkit-border-radius: $radii;
+	-moz-border-radius: $radii;
+	-o-border-radius: $radii;
+	border-radius: $radii;
+}
+
+@mixin borderRadsSpecify (	$radiusTopLeft: 0, 
+							$radiusTopRight: 0,
+							$radiusBottomRight: 0,
+							$radiusBottomLeft: 0 	)
+{
+	-webkit-border-top-left-radius: $radiusTopLeft;
+	-moz-border-top-left-radius: $radiusTopLeft;
+	border-top-left-radius: $radiusTopLeft;
+	-webkit-border-top-right-radius: $radiusTopRight;
+	-moz-border-top-right-radius: $radiusTopRight;
+	border-top-right-radius: $radiusTopRight;
+	-webkit-border-bottom-right-radius: $radiusBottomRight;
+	-moz-border-bottom-right-radius: $radiusBottomRight;
+	border-bottom-right-radius: $radiusBottomRight;
+	-webkit-border-bottom-left-radius: $radiusBottomLeft;
+	-moz-border-bottom-left-radius: $radiusBottomLeft;
+	border-bottom-left-radius: $radiusBottomLeft;
+}
+
+@mixin boxShadow ( $shadow: 0 2px 4px rgba(0, 0, 0, 0.5) )
+{
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	-o-box-shadow: $shadow;
+	box-shadow: $shadow;
+}
+
+@mixin boxShadows ( $shadows... )
+{
+	-webkit-box-shadow: $shadows;
+	-moz-box-shadow: $shadows;
+	-o-box-shadow: $shadows;
+	box-shadow: $shadows;
+}
+
+@mixin maskGr (	$maskImg: url('img.png'),
+				$firstColor: #fff,
+				$secondColor: #ccc )
+{
+
+}
+
+// masks
+@mixin mask ( $args )
+{
+	-webkit-mask: $args;
+	-moz-mask: $args;
+	-o-mask: $args;
+	mask: $args;
+}
+
+@mixin maskImg ( $args )
+{
+	-webkit-mask-image: $args;
+	-moz-mask-image: $args;
+	-o-mask-image: $args;
+	mask-image: $args;
+}
+
+@mixin boxMask ( $args )
+{
+	-webkit-mask-box: $args;
+	-moz-mask-box: $args;
+	-o-mask-box: $args;
+	mask-box: $args;
+}
+
+@mixin boxMaskImg ( $args )
+{
+	-webkit-mask-box-image: $args;
+	-moz-mask-box-image: $args;
+	-o-mask-box-image: $args;
+	mask-box-image: $args;
+}
+
+// GRADIENTS
+@mixin basicGr ( 		$firstColor: #ffffff,
+				$secondColor: #f1f1f1	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin basicGrH ( 	$firstColor: #ffffff,
+				$secondColor: #f1f1f1	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	left,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, top left, top right, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	left,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(left, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(left, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: linear-gradient(to right,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin darkGr ( 		$firstColor: #aaa,
+				$secondColor: #555	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin glossyGr ( 	$startColor: #fcfcfc,
+				$hilightEnd: #fff,
+				$innerColor: #efefef,
+				$endColor: #f0f0f0 ) 
+{
+	background: $startColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$startColor 0%, 
+									  	$hilightEnd 50%, 
+									  	$innerColor 51%, 
+										$endColor 100%	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$startColor), 
+									color-stop(50%,$hilightEnd), 
+									color-stop(51%,$innerColor), 
+									color-stop(100%,$endColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$startColor 0%,
+											$hilightEnd 50%,
+											$innerColor 51%,
+											$endColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$startColor 0%,
+											$hilightEnd 50%,
+											$innerColor 51%,
+											$endColor 100%	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$startColor 0%,
+											$hilightEnd 50%,
+											$innerColor 51%,
+											$endColor 100%	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $startColor 0%,
+											$hilightEnd 50%,
+											$innerColor 51%,
+											$endColor 100%	); /* W3C */
+
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($startColor),argb($endColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin twoStopGr ( 	$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin threeStopGr ( 	$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%, 
+				$thirdColor: #e1e1e1, 
+				$thirdStop: 51%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop, 
+									  	$thirdColor $thirdStop	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor), 
+									color-stop($thirdStop,$thirdColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin fourStopGr ( 	$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%, 
+				$thirdColor: #e1e1e1, 
+				$thirdStop: 51%, 
+				$fourthColor: #f6f6f6, 
+				$fourthStop: 80%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop, 
+									  	$thirdColor $thirdStop, 
+										$fourthColor $fourthStop	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor), 
+									color-stop($thirdStop,$thirdColor), 
+									color-stop($fourthStop,$fourthColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin fiveStopGr ( 	$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%, 
+				$thirdColor: #e1e1e1, 
+				$thirdStop: 51%, 
+				$fourthColor: #f6f6f6, 
+				$fourthStop: 80%,
+				$fifthColor: #000000,
+				$fifthStop: 100%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: -moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop, 
+									  	$thirdColor $thirdStop, 
+										$fourthColor $fourthStop,
+										$fifthColor $fifthStop	); /* FF3.6+ */
+
+	background: -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor), 
+									color-stop($thirdStop,$thirdColor), 
+									color-stop($fourthStop,$fourthColor),
+									color-stop($fifthStop,$fifthColor)	); /* Chrome,Safari4+ */
+
+	background: -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop,
+											$fifthColor $fifthStop	); /* Chrome10+,Safari5.1+ */
+
+	background: -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop,
+											$fifthColor $fifthStop	); /* Opera 11.10+ */
+
+	background: -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop,
+											$fifthColor $fifthStop	); /* IE10+ */
+
+	background: linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop,
+											$fifthColor $fifthStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin maskGr (	$maskImg: url('img.png'),
+			$firstColor: #fff,
+			$secondColor: #ccc 		)
+{
+
+}
+
+@mixin rawGr (	$firstColor: #fff,
+			$secondColor: #ccc 	)
+{
+
+}
+
+@mixin mask (	$args )
+{
+	-webkit-mask: $args;
+	-moz-mask: $args;
+	-o-mask: $args;
+	mask: $args;
+}
+
+// ICON BACKGROUNDS
+
+@mixin iconBg (	$imgSrc: url('img.png'),
+			$bgColor: #fff )
+{
+	background: $bgColor $imgSrc no-repeat center;
+}
+
+@mixin iconBgLeft (	$imgSrc: url('img.png'),
+				$bgColor: #fff )
+{
+	background: $bgColor $imgSrc no-repeat 3% 50%;
+}
+
+@mixin iconGr ( 	$imgSrc: url('img.png'),
+			$firstColor: #ffffff,
+			$secondColor: #f1f1f1	) 
+{
+	background: $secondColor; /* Old browsers */
+	background: $imgSrc no-repeat center,
+				-moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: $imgSrc no-repeat center,
+				-webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc no-repeat center,
+				-webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc no-repeat center,
+				-o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: $imgSrc no-repeat center,
+				-ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: $imgSrc no-repeat center,
+				linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin iconSpecifyGr ( 	$imgSrc: url('img.png'),
+					$firstColor: #ffffff,
+					$secondColor: #f1f1f1,
+					$x: 0%,
+					$y: 50%	) 
+{
+	background: $secondColor; /* Old browsers */
+	background: $imgSrc no-repeat $x $y,
+				-moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: $imgSrc no-repeat $x $y,
+				-webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc no-repeat $x $y,
+				-webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc no-repeat $x $y,
+				-o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: $imgSrc no-repeat $x $y,
+				-ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: $imgSrc no-repeat $x $y,
+				linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+// PATTERN IMGS
+
+$bgBrushed: 	url('patterns/pattern_brushed.png');
+$bgCarbonFiber: url('patterns/pattern_carbonFiber.png');
+$bgCells: 		url('patterns/pattern_cells.png');
+$bgHexagon:		url('patterns/pattern_hexagonal.png');
+$bgHexagon2:	url('patterns/pattern_hexagonal2.png');
+$bgNoise:		url('patterns/pattern_noise.png');
+$bgScratches:	url('patterns/pattern_scratches.png');
+$bgSnakeskin:	url('patterns/pattern_snakeskin.png');
+$bgStitch:		url('patterns/pattern_stitch.png');
+$bgTribal:		url('patterns/pattern_tribal.png');
+
+@mixin patternBg (		$imgSrc: $bgNoise, $bgColor: #fff	)
+{
+	background: $bgColor $imgSrc repeat;
+}
+
+@mixin patternBgGr ( 
+				$imgSrc: url('img.png'),
+				$firstColor: #ffffff,
+				$secondColor: $grayLighter ) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc repeat 0 0,
+				-moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc repeat 0 0,
+	            -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: $imgSrc repeat 0 0,
+	            -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: $imgSrc repeat 0 0,
+	            linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+
+@mixin patternBgTwoStopGr ( 
+				$imgSrc: url('img.png'),
+				$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: $grayLighter, 
+				$secondStop: 50%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc repeat 0 0,
+				-moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop	); /* FF3.6+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc repeat 0 0,
+	            -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* Opera 11.10+ */
+
+	background: $imgSrc repeat 0 0,
+	            -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* IE10+ */
+
+	background: $imgSrc repeat 0 0,
+	            linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin patternBgThreeStopGr ( 
+				$imgSrc: url('img.png'),
+				$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: $grayLighter, 
+				$secondStop: 50%,
+				$thirdColor: $gray,
+				$thirdStop: 75%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc repeat 0 0,
+				-moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop
+									  	$thirdColor $thirdStop	); /* FF3.6+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor),
+									color-stop($thirdStop,$thirdColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc repeat 0 0,
+	            -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* Opera 11.10+ */
+
+	background: $imgSrc repeat 0 0,
+	            -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* IE10+ */
+
+	background: $imgSrc repeat 0 0,
+	            linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin patternBgFourStopGr ( 
+				$imgSrc: url('img.png'),
+				$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: $grayLighter, 
+				$secondStop: 50%,
+				$thirdColor: $gray,
+				$thirdStop: 75%,
+				$fourthColor: $black,
+				$fourthStop: 100%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc repeat 0 0,
+				-moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop,
+									  	$thirdColor $thirdStop,
+									  	$fourthColor $fourthStop	); /* FF3.6+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor),
+									color-stop($thirdStop,$thirdColor),
+									color-stop($fourthStop,$fourthColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc repeat 0 0, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc repeat 0 0,
+	            -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* Opera 11.10+ */
+
+	background: $imgSrc repeat 0 0,
+	            -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* IE10+ */
+
+	background: $imgSrc repeat 0 0,
+	            linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop,
+											$thirdColor $thirdStop,
+											$fourthColor $fourthStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin patternXBgTwoStopGr ( 
+				$imgSrc: url('img.png'),
+				$repeat: repeat-x,
+				$x: 0,
+				$y: 0,
+				$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc $repeat $x $y,
+				-moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop	); /* FF3.6+ */
+
+	background: $imgSrc $repeat $x $y, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc $repeat $x $y, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc $repeat $x $y,
+	            -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* Opera 11.10+ */
+
+	background: $imgSrc $repeat $x $y,
+	            -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* IE10+ */
+
+	background: $imgSrc $repeat $x $y,
+	            linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin patternYBgTwoStopGr ( 
+				$imgSrc: url('img.png'),
+				$repeat: repeat-y,
+				$x: 0,
+				$y: 0,
+				$firstColor: #ffffff, 
+				$firstStop: 0%, 
+				$secondColor: #f1f1f1, 
+				$secondStop: 50%	) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc $repeat $x $y,
+				-moz-linear-gradient( 	top,  
+										$firstColor $firstStop, 
+									  	$secondColor $secondStop	); /* FF3.6+ */
+
+	background: $imgSrc $repeat $x $y, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop($firstStop,$firstColor), 
+									color-stop($secondStop,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc $repeat $x $y, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor $firstStop,
+											$secondColor $secondStop	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc $repeat $x $y,
+	            -o-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* Opera 11.10+ */
+
+	background: $imgSrc $repeat $x $y,
+	            -ms-linear-gradient(top, 	$firstColor $firstStop,
+											$secondColor $secondStop	); /* IE10+ */
+
+	background: $imgSrc $repeat $x $y,
+	            linear-gradient(to bottom,  $firstColor $firstStop,
+											$secondColor $secondStop	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+@mixin basicGrImg ( 
+				$imgSrc: url('img.png'),
+				$firstColor: #ffffff,
+				$secondColor: $grayLighter ) 
+{
+	background: $firstColor; /* Old browsers */
+	background: $imgSrc no-repeat center,
+				-moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	background: $imgSrc no-repeat center, 
+	            -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	background: $imgSrc no-repeat center, 
+	            -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	background: $imgSrc no-repeat center,
+	            -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	background: $imgSrc no-repeat center,
+	            -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	background: $imgSrc no-repeat center,
+	            linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+// BORDER FX
+// BORDER GRADIENTS
+
+@mixin borderGr ( 	$firstColor: #ffffff,
+					$secondColor: $grayLighter ) 
+{
+	border-color: $firstColor; /* Old browsers */
+	border: $firstColor; /* Old browsers */
+	-moz-border-image: -moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	-webkit-border-image: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	-webkit-border-image: -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	-o-border-image: -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	-ms-border-image: -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	border-image: linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+}
+
+@mixin borderBottomGr ( 	$firstColor: #ffffff,
+					$secondColor: $grayLighter ) 
+{
+	border-bottom-color: $firstColor; /* Old browsers */
+	border-bottom: $firstColor; /* Old browsers */
+	-moz-border-bottom-image: -moz-linear-gradient( 	top,  
+										$firstColor 0%, 
+									  	$secondColor 100%	); /* FF3.6+ */
+
+	-webkit-border-bottom-image: -webkit-gradient(linear, left top, left bottom, 
+									color-stop(0%,$firstColor), 
+									color-stop(100%,$secondColor)	); /* Chrome,Safari4+ */
+
+	-webkit-border-bottom-image: -webkit-linear-gradient(	top,  
+											$firstColor 0%,
+											$secondColor 100%	); /* Chrome10+,Safari5.1+ */
+
+	-o-border-bottom-image: -o-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* Opera 11.10+ */
+
+	-ms-border-bottom-image: -ms-linear-gradient(top, 	$firstColor 0%,
+											$secondColor 100%	); /* IE10+ */
+
+	border-bottom-image: linear-gradient(to bottom,  $firstColor 0%,
+											$secondColor 100%	); /* W3C */
+	
+	//filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",
+	//		argb($firstColor),argb($secondColor))); // IE9 and down, gets no color-stop at all for proper fallback
+}
+
+
+// SHAPES
+
+@mixin triUp (	$color: #ccc, $height: 100px )
+{
+	width: 0;
+	height: 0;
+	border-left: ($height / 2) solid transparent;
+	border-right: ($height / 2) solid transparent;
+	border-bottom: $height solid $color;
+}
+
+@mixin triDown (	$color: #ccc, $height: 100px )
+{
+	width: 0;
+	height: 0;
+	border-left: ($height / 2) solid transparent;
+	border-right: ($height / 2) solid transparent;
+	border-top: $height solid $color;
+}
+
+@mixin pentagonUp (	$color: #ccc, $height: 100px )
+{
+    position: relative;
+    width: 54px;
+    border-width: 50px 18px 0;
+    border-style: solid;
+    border-color: $color transparent;
+	&:before {
+		content: "";
+		position: absolute;
+		height: 0;
+		width: 0;
+		top: -85px;
+		left: -18px;
+		border-width: 0 45px 35px;
+		border-style: solid;
+		border-color: transparent transparent $color;
+	}
+}
+
+@mixin hexa ( $color: #ccc, $height: 80px ) 
+{
+	width: ($height / 1.9);
+	height: 0;
+	border-bottom: $color solid ($height / 2);
+	border-left: ($height / 3) solid transparent;
+	border-right: ($height / 3) solid transparent;
+	position: relative;
+	&:after {
+		content: "";
+		position: absolute;
+		top: ($height / 2);
+		left: -($height / 3);
+		width: ($height / 1.9);
+		height: 0;
+		border-top: $color solid ($height / 2);
+		border-left: ($height / 3) solid transparent;
+		border-right: ($height / 3) solid transparent;
+	}
+}
+
+@mixin octa ( $color: #ccc, $height: 100px ) 
+{
+	width: 100px;
+	height: 100px;
+	background: $color;
+	position: relative;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		border-bottom: 29px solid $color;
+		border-left: 29px solid #eee;
+		border-right: 29px solid #eee;
+		width: 42px;
+		height: 0;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		border-top: 29px solid $color;
+		border-left: 29px solid #eee;
+		border-right: 29px solid #eee;
+		width: 42px;
+		height: 0;
+	}
+}

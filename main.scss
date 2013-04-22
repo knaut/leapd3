@@ -1,0 +1,113 @@
+// simple styling for Leap data console.
+
+@import "ui_kit.scss";
+
+// vlad color scheme
+$vladGray: #3C3F40;
+$vladBlue: #389BA6;
+$vladLightBlue: #6CCED9;
+$vladOrange: #D9A13B;
+$vladWhite: #F2F2F2;
+$vladOffWhite: #C7C7C7;
+
+$textHilight: 0 1px 0 rgba(255, 255, 255, 0.4);
+$textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+
+// Mixins
+@mixin HelveticaLight {
+	font-family: "HelveticaNeue-Light";
+	font-weight: lighter !important;
+}
+
+@mixin headerBar {
+	@include basicGr( $vladWhite, $vladOffWhite );
+	padding: 10px 15px;
+	border-bottom: 1px solid #aaa;
+	color: $vladGray;
+	text-shadow: $textHilight;
+}
+
+@mixin section {
+	@include basicGr( $vladOffWhite, $vladWhite);
+	color: $vladGray;
+	border-bottom: 1px solid #aaa;
+	min-height: 250px;
+
+	h3 {
+		@include headerBar;
+		@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
+		@include HelveticaLight;
+		margin: 0;
+	}	
+}
+
+
+// App Styling
+body {
+	background: $vladGray;
+	color: $vladWhite;
+}
+
+#header {
+	@include headerBar;
+
+	h1 {
+		@include HelveticaLight;
+		color: 	$vladBlue;
+		text-shadow: $textHilight;
+	}
+}
+
+#controls {
+	@include headerBar;
+}
+
+.section {
+	@include section;
+
+	clear: both;
+}
+
+// Visuals
+#finger-vis {
+	//background: red;
+	height: 400px;
+
+	svg[id*="finger-svg"] {
+		width: 50px;
+		background: $vladBlue;
+		min-height: 10px;
+		max-height: 200px;
+		//float: left;
+		margin-right: 10px;
+	}
+}
+
+.finger-svgs {
+	width: 50px;
+	background: $vladBlue;
+	min-height: 10px;
+	max-height: 200px;
+	float: left;
+	margin-right: 10px;
+	display: block;
+	position: relative;
+
+	&#finger-1 {
+		left: 0;
+	}
+
+	&#finger-2 {
+		left: 55px !important;
+	}
+	&#finger-3 {
+		left: 110px;
+	}
+	&#finger-4 {
+		left: 165px;
+	}
+	&#finger-5 {
+		left: 220px;
+	}
+}

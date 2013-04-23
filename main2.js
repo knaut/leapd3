@@ -36,8 +36,9 @@ var k = {
 
 		// here's the secret sauce
 		fingerVis.data( thisFrameData.fingers )
+			.transition()
 			.attr('height', function(d) {
-				return d.length;
+				return (d.length * 3);
 			});
 		
 		for ( i = 0; i < thisFrameData.fingers.length; i++ ) {
@@ -67,11 +68,11 @@ var k = {
 
 		interval = setInterval( function() {
 
-			console.log( prevFrame );
+			//console.log( prevFrame );
 
 			k.prepData( prevFrame );
 
-		}, 1000);
+		}, 50);
 		
 	}
 }

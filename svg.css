@@ -1,0 +1,14 @@
+.finger-rects {
+  width: 20;
+  height: 15;
+  fill: #3c3f40; }
+  .finger-rects#finger-1 {
+    x: 0; }
+  .finger-rects#finger-2 {
+    x: 55px !important; }
+  .finger-rects#finger-3 {
+    x: 110px; }
+  .finger-rects#finger-4 {
+    x: 165px; }
+  .finger-rects#finger-5 {
+    x: 220px; }

@@ -105,22 +105,17 @@ body {
     float: left;
     margin-right: 5px; }
 
-.finger-svgs {
-  width: 50px;
-  background: #389ba6;
-  min-height: 10px;
-  max-height: 200px;
+.finger-rects {
   float: left;
   margin-right: 10px;
-  display: block;
-  position: relative; }
-  .finger-svgs#finger-1 {
-    left: 0; }
-  .finger-svgs#finger-2 {
-    left: 55px !important; }
-  .finger-svgs#finger-3 {
-    left: 110px; }
-  .finger-svgs#finger-4 {
-    left: 165px; }
-  .finger-svgs#finger-5 {
-    left: 220px; }
+  display: block; }
+  .finger-rects#finger-1 {
+    x: 0; }
+  .finger-rects#finger-2 {
+    x: 55px !important; }
+  .finger-rects#finger-3 {
+    x: 110px; }
+  .finger-rects#finger-4 {
+    x: 165px; }
+  .finger-rects#finger-5 {
+    x: 220px; }

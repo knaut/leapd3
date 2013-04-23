@@ -1,0 +1,41 @@
+// simple styling for Leap data console.
+
+@import "ui_kit.scss";
+
+// vlad color scheme
+$vladGray: #3C3F40;
+$vladBlue: #389BA6;
+$vladLightBlue: #6CCED9;
+$vladOrange: #D9A13B;
+$vladWhite: #F2F2F2;
+$vladOffWhite: #C7C7C7;
+
+$textHilight: 0 1px 0 rgba(255, 255, 255, 0.4);
+$textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+// svgs
+.finger-rects {
+	width: 20;
+	height: 15;
+	fill: $vladGray;
+
+	&#finger-1 {
+		x: 0;
+	}
+
+	&#finger-2 {
+		x: 55px !important;
+	}
+
+	&#finger-3 {
+		x: 110px;
+	}
+
+	&#finger-4 {
+		x: 165px;
+	}
+
+	&#finger-5 {
+		x: 220px;
+	}
+}

@@ -23,33 +23,13 @@ var k = {
 
 	init: function() {
 
+		// get our d3 var
 		fingerVis = d3.select('#finger-vis').selectAll('rect');
 
 		// start our leap loop
 		k.leapLoop();
 
-	},
-
-	prepData: function( frameData ) {
-
-		thisFrameData = frameData;
-
-		// here's the secret sauce
-		fingerVis.data( thisFrameData.fingers )
-			.transition()
-			.attr('height', function(d) {
-				return (d.length * 3);
-			});
-		
-		for ( i = 0; i < thisFrameData.fingers.length; i++ ) {
-
-			//console.log( thisFrameData.fingers[i] );
-
-			//console.log( 'how many fingers: ' + thisFrameData.fingers.length );
-
-			
-		}
-	},
+	},	
 
 	leapLoop: function() {
 
@@ -74,5 +54,22 @@ var k = {
 
 		}, 50);
 		
+	},
+
+	prepData: function( frameData ) {
+
+		thisFrameData = frameData;
+
+		// here's the secret sauce
+		fingerVis.data( thisFrameData.fingers )
+			.transition()
+			.attr('height', function(d) {
+				return (d.length * 3);
+			})
+			.attr('fill', function(d) {
+				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+			});
+		
+
 	}
 }

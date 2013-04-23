@@ -95,27 +95,18 @@ body {
 
 #finger-vis {
   height: 400px; }
-  #finger-vis svg[id*="finger-svg"] {
-    width: 50px;
-    background: #389ba6;
-    min-height: 10px;
-    max-height: 200px;
-    margin-right: 10px; }
-  #finger-vis rect {
-    float: left;
-    margin-right: 5px; }
 
-.finger-rects {
-  float: left;
-  margin-right: 10px;
-  display: block; }
-  .finger-rects#finger-1 {
-    x: 0; }
-  .finger-rects#finger-2 {
-    x: 55px !important; }
-  .finger-rects#finger-3 {
-    x: 110px; }
-  .finger-rects#finger-4 {
-    x: 165px; }
-  .finger-rects#finger-5 {
-    x: 220px; }
+rect#finger-5 {
+  x: 235; }
+
+rect#finger-4 {
+  x: 190; }
+
+rect#finger-3 {
+  x: 145; }
+
+rect#finger-2 {
+  x: 100; }
+
+rect#finger-1 {
+  x: 55; }

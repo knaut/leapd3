@@ -73,17 +73,27 @@ body {
 #finger-vis {
 	//background: red;
 	height: 400px;
+}
 
-	svg[id*="finger-svg"] {
-		width: 50px;
-		background: $vladBlue;
-		min-height: 10px;
-		max-height: 200px;
-		//float: left;
-		margin-right: 10px;
+// Finger SVGs - use svg-specific styles, and prefix with the name of the shape your
+// selecting
+
+$fingerBarWidth: 45; 	// global width var
+
+rect.finger-bar {
+	//fill: $vladGray;
+}
+
+// move them x-wise
+$i: 5;	// define our loop number
+@while $i > 0 {		// loop for that number
+
+	// get each finger by id
+	rect#finger-#{$i} {
+
+		// move them by some factor
+		x: ($fingerBarWidth * $i) + 10;
+		$i: $i - 1;	// let our loop run down
 	}
 
-	rect {
-		float: left; margin-right: 5px;
-	}
 }

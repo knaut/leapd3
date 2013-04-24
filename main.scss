@@ -10,6 +10,11 @@ $vladOrange: #D9A13B;
 $vladWhite: #F2F2F2;
 $vladOffWhite: #C7C7C7;
 
+// darker color scheme
+$darkGray: #333;
+$gray: #888;
+$bright: #eee;
+
 $textHilight: 0 1px 0 rgba(255, 255, 255, 0.4);
 $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
@@ -20,22 +25,23 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 	font-weight: lighter !important;
 }
 
-@mixin headerBar {
-	@include basicGr( $vladWhite, $vladOffWhite );
+@mixin bar {
+	@include basicGr( $gray, $darkGray );
+	@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
 	padding: 10px 15px;
-	border-bottom: 1px solid #aaa;
-	color: $vladGray;
-	text-shadow: $textHilight;
+	border-bottom: 1px solid #111;
+	color: $bright;
+	text-shadow: $textShadow;
 }
 
 @mixin section {
-	@include basicGr( $vladOffWhite, $vladWhite);
+	@include basicGr( $darkGray, #555);
 	color: $vladGray;
-	border-bottom: 1px solid #aaa;
+	border-bottom: 1px solid $darkGray;
 	min-height: 250px;
 
 	h3 {
-		@include headerBar;
+		@include bar;
 		@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
 		@include HelveticaLight;
 		margin: 0;
@@ -50,17 +56,17 @@ body {
 }
 
 #header {
-	@include headerBar;
+	@include bar;
 
 	h1 {
 		@include HelveticaLight;
 		color: 	$vladBlue;
-		text-shadow: $textHilight;
+		text-shadow: $textShadow;
 	}
 }
 
 #controls {
-	@include headerBar;
+	@include bar;
 }
 
 .section {
@@ -81,7 +87,8 @@ body {
 $fingerBarWidth: 45; 	// global width var
 
 rect.finger-bar {
-	//fill: $vladGray;
+	position: absolute;
+	bottom: 0;
 }
 
 // move them x-wise

@@ -23,6 +23,7 @@ var k = {
 	fingerSvgH: null,
 	fingerSvgW: null,
 	i: null,
+	i2: null,
 
 	init: function() {
 
@@ -33,10 +34,20 @@ var k = {
 		//fingerVis.attr('width', (fingerSvgW / (5 + 0.5)))
 		//	.attr('x', (fingerSvgW * ( 0.5)));
 		
-		$('.finger-bar').each( function() {
+		$('#finger-vis .finger-bar').each( function() {
 			console.log(k.i);
 			k.i+=115;
 			this.setAttribute('x', k.i);
+		});
+
+		fingerVis2 = d3.select('#finger-vis-2').selectAll('rect');
+		//fingerVis.attr('width', (fingerSvgW / (5 + 0.5)))
+		//	.attr('x', (fingerSvgW * ( 0.5)));
+		
+		$('#finger-vis-2 .finger-bar').each( function() {
+			console.log(k.i2);
+			k.i2+=115;
+			this.setAttribute('x', k.i2);
 		});
 
 		// start our leap loop
@@ -77,7 +88,19 @@ var k = {
 
 		
 		// here's the secret sauce
-		fingerVis.data( thisFrameData.fingers )
+		fingerVis.data( thisFrameData.hands[0].fingers )
+			.transition()
+			.attr('height', function(d) {
+				return ( d.length * 4);
+			})
+			.attr('y', function(d) {
+				return 400 - ( d.length * 4);
+			})
+			.attr('fill', function(d) {
+				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+			});
+
+		fingerVis2.data( thisFrameData.hands[1].fingers )
 			.transition()
 			.attr('height', function(d) {
 				return ( d.length * 4);

@@ -35,7 +35,7 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 }
 
 @mixin section {
-	@include basicGr( $darkGray, #555);
+	//@include basicGr( #000, #222);
 	color: $vladGray;
 	border-bottom: 1px solid $darkGray;
 	min-height: 250px;
@@ -51,7 +51,7 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
 // App Styling
 body {
-	background: $vladGray;
+	background: #000;
 	color: $vladWhite;
 }
 
@@ -76,13 +76,28 @@ body {
 }
 
 // Visuals
+.data-panel {
+	width: 50%;
+	float: left;
+}
+
 #finger-vis {
 	//background: red;
+	//position: absolute;
+	//left: 20px;
 	height: 400px;
 	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
-
-
 }
+
+#finger-vis-2 {
+
+	//background: red;
+	//position: absolute;
+	//left: 520px;
+	height: 400px;
+	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
+}
+
 
 // Finger SVGs - use svg-specific styles, and prefix with the name of the shape your
 // selecting

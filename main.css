@@ -1,5 +1,5 @@
 body {
-  background: #3c3f40;
+  background: #000;
   color: #f2f2f2; }
 
 #header {
@@ -56,20 +56,6 @@ body {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4); }
 
 .section {
-  background: #333333;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #333333 0%, #555555 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #555555));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, #333333 0%, #555555 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, #333333 0%, #555555 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, #333333 0%, #555555 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, #333333 0%, #555555 100%);
-  /* W3C */
   color: #3c3f40;
   border-bottom: 1px solid #333333;
   min-height: 250px;
@@ -105,7 +91,15 @@ body {
     font-weight: lighter !important;
     margin: 0; }
 
+.data-panel {
+  width: 50%;
+  float: left; }
+
 #finger-vis {
+  height: 400px;
+  -webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5))); }
+
+#finger-vis-2 {
   height: 400px;
   -webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5))); }
 

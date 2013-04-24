@@ -22,15 +22,22 @@ var k = {
 	fingerVis: null,
 	fingerSvgH: null,
 	fingerSvgW: null,
+	i: null,
 
 	init: function() {
 
 		fingerSvgW = 500;
-		fingerSvgH = 500;
+		fingerSvgH = 400;
 		// get our d3 var
 		fingerVis = d3.select('#finger-vis').selectAll('rect');
-		fingerVis.attr('width', (fingerSvgW / (5 + 0.5)))
-			.attr('x', (fingerSvgW * ( 0.5)));
+		//fingerVis.attr('width', (fingerSvgW / (5 + 0.5)))
+		//	.attr('x', (fingerSvgW * ( 0.5)));
+		
+		$('.finger-bar').each( function() {
+			console.log(k.i);
+			k.i+=115;
+			this.setAttribute('x', k.i);
+		});
 
 		// start our leap loop
 		k.leapLoop();
@@ -73,10 +80,10 @@ var k = {
 		fingerVis.data( thisFrameData.fingers )
 			.transition()
 			.attr('height', function(d) {
-				return (d.length * 10);
+				return ( d.length * 4);
 			})
 			.attr('y', function(d) {
-				return ( k.fingerSvgH - (d.length * 8));
+				return 400 - ( d.length * 4);
 			})
 			.attr('fill', function(d) {
 				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';

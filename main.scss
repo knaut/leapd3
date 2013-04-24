@@ -79,6 +79,9 @@ body {
 #finger-vis {
 	//background: red;
 	height: 400px;
+	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
+
+
 }
 
 // Finger SVGs - use svg-specific styles, and prefix with the name of the shape your

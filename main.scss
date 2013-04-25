@@ -21,15 +21,15 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
 // Mixins
 @mixin HelveticaLight {
-	font-family: "HelveticaNeue-Light";
+	font-family: "HelveticaNeue-UltraLight";
 	font-weight: lighter !important;
 }
 
 @mixin bar {
-	@include basicGr( $gray, $darkGray );
-	@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
+	//@include basicGr( $gray, $darkGray );
+	//@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
 	padding: 10px 15px;
-	border-bottom: 1px solid #111;
+	//border-bottom: 1px solid #111;
 	color: $bright;
 	text-shadow: $textShadow;
 }
@@ -37,7 +37,7 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 @mixin section {
 	//@include basicGr( #000, #222);
 	color: $vladGray;
-	border-bottom: 1px solid $darkGray;
+	//border-bottom: 1px solid $darkGray;
 	min-height: 250px;
 
 	h3 {
@@ -60,7 +60,7 @@ body {
 
 	h1 {
 		@include HelveticaLight;
-		color: 	$vladBlue;
+		color: 	$bright;
 		text-shadow: $textShadow;
 	}
 }
@@ -98,6 +98,13 @@ body {
 	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
 }
 
+#finger-panel {
+	@include basicGr(#000, #111);
+}
+
+body {
+	@include basicGr(#121212, #000);
+}
 
 // Finger SVGs - use svg-specific styles, and prefix with the name of the shape your
 // selecting

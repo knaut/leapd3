@@ -100,17 +100,22 @@ var k = {
 				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
 			});
 
-		fingerVis2.data( thisFrameData.hands[1].fingers )
-			.transition()
-			.attr('height', function(d) {
-				return ( d.length * 4);
-			})
-			.attr('y', function(d) {
-				return 400 - ( d.length * 4);
-			})
-			.attr('fill', function(d) {
-				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
-			});
+			if ( thisFrameData.hands[1].fingers ) {
+
+				fingerVis2.data( thisFrameData.hands[1].fingers )
+					.transition()
+					.attr('height', function(d) {
+						return ( d.length * 4);
+					})
+					.attr('y', function(d) {
+						return 400 - ( d.length * 4);
+					})
+					.attr('fill', function(d) {
+						return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+					});
+			}
+
+		
 		
 
 	}

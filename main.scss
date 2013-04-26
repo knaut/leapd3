@@ -26,18 +26,13 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 }
 
 @mixin bar {
-	//@include basicGr( $gray, $darkGray );
-	//@include boxShadow( 0 2px 3px rgba(0, 0, 0, 0.4));
 	padding: 10px 15px;
-	//border-bottom: 1px solid #111;
 	color: $bright;
 	text-shadow: $textShadow;
 }
 
 @mixin section {
-	//@include basicGr( #000, #222);
 	color: $vladGray;
-	//border-bottom: 1px solid $darkGray;
 	min-height: 250px;
 
 	h3 {
@@ -48,11 +43,14 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 	}	
 }
 
+#finger-panel {
+	@include basicGr(#000, #111);
+}
 
 // App Styling
 body {
-	background: #000;
 	color: $vladWhite;
+	@include basicGr(#121212, #000);
 }
 
 #header {
@@ -79,53 +77,9 @@ body {
 .data-panel {
 	width: 50%;
 	float: left;
-}
 
-#finger-vis {
-	//background: red;
-	//position: absolute;
-	//left: 20px;
 	height: 400px;
 	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
 }
 
-#finger-vis-2 {
 
-	//background: red;
-	//position: absolute;
-	//left: 520px;
-	height: 400px;
-	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
-}
-
-#finger-panel {
-	@include basicGr(#000, #111);
-}
-
-body {
-	@include basicGr(#121212, #000);
-}
-
-// Finger SVGs - use svg-specific styles, and prefix with the name of the shape your
-// selecting
-
-$fingerBarWidth: 45; 	// global width var
-
-rect.finger-bar {
-	position: absolute;
-	bottom: 0;
-}
-
-// move them x-wise
-$i: 5;	// define our loop number
-@while $i > 0 {		// loop for that number
-
-	// get each finger by id
-	rect#finger-#{$i} {
-
-		// move them by some factor
-		x: ($fingerBarWidth * $i) + 10;
-		$i: $i - 1;	// let our loop run down
-	}
-
-}

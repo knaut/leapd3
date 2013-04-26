@@ -1,9 +1,11 @@
-var prevFrame;
+// global variables from the leap sample
+
 var paused = false;
 var pauseOnGesture = false;
 
 var controllerOptions = { enableGestures: true };
 
+// use to toggle the
 function togglePause() {
   paused = !paused;
 
@@ -24,6 +26,7 @@ var k = {
 	fingerSvgW: null,
 	i: null,
 	i2: null,
+	prevFrame: null,
 
 	init: function() {
 
@@ -66,7 +69,7 @@ var k = {
 				return; // Skip this update
 			}
 		 	
-		 	prevFrame = frame;
+		 	k.prevFrame = frame;
 
 		 });
 
@@ -74,21 +77,16 @@ var k = {
 
 			//console.log( prevFrame );
 
-			k.prepData( prevFrame );
+			k.prepData( );
 
 		}, 50);
 		
 	},
 
-	prepData: function( frameData ) {
-
-		thisFrameData = frameData;
-
-		//console.log(thisFrameData);
-
+	prepData: function( ) {
 		
 		// here's the secret sauce
-		fingerVis.data( thisFrameData.hands[0].fingers )
+		fingerVis.data( this.prevFrame.hands[0].fingers )
 			.transition()
 			.attr('height', function(d) {
 				return ( d.length * 4);
@@ -100,23 +98,17 @@ var k = {
 				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
 			});
 
-			if ( thisFrameData.hands[1].fingers ) {
-
-				fingerVis2.data( thisFrameData.hands[1].fingers )
-					.transition()
-					.attr('height', function(d) {
-						return ( d.length * 4);
-					})
-					.attr('y', function(d) {
-						return 400 - ( d.length * 4);
-					})
-					.attr('fill', function(d) {
-						return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
-					});
-			}
-
-		
-		
+		fingerVis2.data( this.prevFrame.hands[1].fingers )
+			.transition()
+			.attr('height', function(d) {
+				return ( d.length * 4);
+			})
+			.attr('y', function(d) {
+				return 400 - ( d.length * 4);
+			})
+			.attr('fill', function(d) {
+				return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+			});
 
 	}
 }

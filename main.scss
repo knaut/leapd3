@@ -43,43 +43,73 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 	}	
 }
 
-#finger-panel {
-	@include basicGr(#000, #111);
+html, body {
+	height: 100%;
 }
 
 // App Styling
 body {
 	color: $vladWhite;
 	@include basicGr(#121212, #000);
+
 }
 
 #header {
-	@include bar;
 
 	h1 {
 		@include HelveticaLight;
 		color: 	$bright;
 		text-shadow: $textShadow;
+		text-align: center;
 	}
 }
 
-#controls {
-	@include bar;
-}
-
-.section {
-	@include section;
-
-	clear: both;
-}
-
 // Visuals
-.data-panel {
+#finger-panel {
+	@include basicGr(#000, #111);
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0 10% 25px;
+}
+
+#finger-panel .data-panel {
 	width: 50%;
-	float: left;
 
 	height: 400px;
 	-webkit-box-reflect: below 20px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), to(rgba(255, 255, 255, 0.5)));
+
+	&:nth-child(1) {
+		float: left;
+	}
+
+	&:nth-child(2) {
+		float: right;
+	}
+}
+
+[data-ui="drawer"] {
+	@include boxShadow(inset -5px 0 20px rgba(0, 0, 0, 0.4));
+	@include patternBg( $bgBrushed, #aaa );
+	position: absolute;
+	top: 0;
+	width: 250px;
+	height: 100%;
+}
+
+#left[data-ui="drawer"] {
+	left: 0;
+}
+
+[data-ui="header"] {
+	@include boxShadow(0 2px 15px rgba(0, 0, 0, 0.7));
+	@include basicGr(#aaa, #777);
+	@include HelveticaLight;
+	text-shadow: $textShadow;
+	padding: 15px;
+	font-size: 24px;
+	letter-spacing: 1px;
+
 }
 
 

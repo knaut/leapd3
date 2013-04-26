@@ -68,6 +68,7 @@ var main = {
 			// we offset their x by multiplying their index
 			// by some arbitrary distance
 			index *= xOffset;
+			index += 100; // compensation for lack of right-side alignment
 			this.setAttribute('x', index);
 		});
 

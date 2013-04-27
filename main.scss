@@ -88,28 +88,56 @@ body {
 	}
 }
 
+// ui widgets
 [data-ui="drawer"] {
 	@include boxShadow(inset -5px 0 20px rgba(0, 0, 0, 0.4));
-	@include patternBg( $bgBrushed, #aaa );
+	@include patternBg( $bgBrushed, #999 );
 	position: absolute;
 	top: 0;
 	width: 250px;
 	height: 100%;
+
+	&#left {
+		left: 0;
+	}
+
+	&#right {
+		right: 0;
+	}
 }
 
-#left[data-ui="drawer"] {
-	left: 0;
+[data-ui="collapsible"] {
+	& > [data-ui="heading"] {
+		@include boxShadow(0 2px 15px rgba(0, 0, 0, 0.7));
+		@include basicGr(#777, #333);
+		@include HelveticaLight;
+		text-shadow: $textShadow;
+		padding: 15px;
+		font-size: 24px;
+		letter-spacing: 1px;
+	}
+
+	[data-ui="subheading"] {
+		//@include HelveticaLight;
+		@include basicGr(#888, #444);
+		color: #efefef;
+		border-top: 1px solid #6f6f6f;
+		border-bottom: 1px solid #ccc;
+		text-shadow: $textShadow;
+		padding: 5px 15px;
+		margin: 20px 0;
+		text-align: left;
+	}
+
+	& > [data-ui="content"] {
+
+		// just the first-level button groups, please
+		& > div[class*="btn-"] {
+			margin-left: 20px;
+		}
+	}
 }
 
-[data-ui="header"] {
-	@include boxShadow(0 2px 15px rgba(0, 0, 0, 0.7));
-	@include basicGr(#aaa, #777);
-	@include HelveticaLight;
-	text-shadow: $textShadow;
-	padding: 15px;
-	font-size: 24px;
-	letter-spacing: 1px;
 
-}
 
 

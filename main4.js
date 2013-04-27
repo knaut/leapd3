@@ -23,6 +23,8 @@ then…
 	- set finger bar height to be finger lenth, or palm y dist from origin
 */
 
+
+
 // global variables from the leap sample
 var paused = false;
 var pauseOnGesture = false;
@@ -44,6 +46,8 @@ var main = {
 	fbarFill: '#3C3F40',
 	lastFrame: null,
 	lastFrameHands: null,
+
+	// declare our prototype objects
 
 	// initialize
 	init: function() {
@@ -77,6 +81,7 @@ var main = {
 		
 	},
 
+	// main program functions
 	leapLoop: function( interval ) { 	
 
 		// we set an interval to catch our data
@@ -134,8 +139,47 @@ var main = {
 					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
 				});
 		
-		}
-		
+		}	
 	}
+}
 
+// ui object
+
+var ui = {
+	$leftDrawer: null,
+
+	// set up the ui
+	setup: function() {
+
+		$leftDrawer = $('#left');
+
+		// click with fake / unfin handler
+		$leftDrawer.click( function() {
+
+			// wrap into its own function
+			// remember to unbind when the drawer closes
+			$('.btn').each( function() {
+
+				// bind the click handler to each item
+				$(this).bind( 'click', function() {
+
+					// call click handler, and give it the clicked elem
+					ui.clickHandler( this )
+
+				});
+			});
+		});
+
+		// buttons
+
+	},
+
+	clickHandler: function( elem ) {
+
+		var $thisButton = $( elem );
+
+		console.log($thisButton[0]);
+		console.log( this );
+
+	},
 }

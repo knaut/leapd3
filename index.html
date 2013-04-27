@@ -15,45 +15,56 @@
 	</head>
 	<body>
 
-		<div id="left" data-ui="drawer">
-			<div data-ui="collapsible">
-				<div data-ui="heading">Fingers</div>
-				<div data-ui="content">
+		<div data-ui="frame">
+			
+			<div id="left" data-ui="drawer">
+				<div data-ui="collapsible">
+					<div data-ui="heading">Fingers</div>
+					<div data-ui="content">
 
-					<div data-ui="subheading">Color Channels</div>
-					<div class="btn-toolbar">
-						<div class="btn-group">
-							<button id="r" class="btn">Red</button>
-							<button id="g" class="btn">Green</button>
-							<button id="b" class="btn">Blue</button>
+						<div data-ui="subheading">Color Channels</div>
+						<div class="btn-toolbar">
+							<div class="btn-group">
+								<button id="r" class="btn">Red</button>
+								<button id="g" class="btn">Green</button>
+								<button id="b" class="btn">Blue</button>
+							</div>
 						</div>
-					</div>
 
-					<div data-ui="subheading">Bar Lengths</div>
-					<div class="btn-group-vertical">
-						<button id="length" class="btn">Finger Length</button>
-						<button id="speed" class="btn">Finger Speed</button>
-						<button id="r" class="btn">Distance from Origin</button>
-					</div>
+						<div data-ui="subheading">Bar Lengths</div>
+						<div class="btn-group-vertical">
+							<button id="length" class="btn">Finger Length</button>
+							<button id="speed" class="btn">Finger Speed</button>
+							<button id="origin" class="btn">Distance from Origin</button>
+						</div>
 
-					<div data-ui="subheading">Bar Colors</div>
-					<div class="btn-group-vertical">
-						<button class="btn">Fingertip Speed</button>
-						<button class="btn">Fingertip Rotation</button>
-						<button class="btn">Fingertip Position</button>
-					</div>
+						<div data-ui="subheading">Bar Colors</div>
+						<div class="btn-group-vertical">
+							<button class="btn">Fingertip Speed</button>
+							<button class="btn">Fingertip Rotation</button>
+							<button class="btn">Fingertip Position</button>
+						</div>
 
+					</div>
 				</div>
 			</div>
+
+			<!-- <div id="right" data-ui="drawer"></div> -->
+
+			<div id="controls">
+				<button href="#left" class="icon parameters" data-ui="toggle" data-ui-target="drawer">
+					<span class="text">Parameters</span>
+					<span class="img"></span>
+				</button>
+			</div>
+
 		</div>
 
 		<div id="header">
 			<h1>Leap + D3</h1>
 		</div>
 
-		<div id="controls">
-			
-		</div>
+		
 
 		<div id="finger-panel" class="data-panel">
 			<div id="first-hand" class="data-panel">							

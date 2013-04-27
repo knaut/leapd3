@@ -78,6 +78,9 @@ var main = {
 
 		// start the leap loop
 		this.leapLoop( 100 );
+
+		// setup the ui
+		ui.setup();
 		
 	},
 
@@ -147,31 +150,62 @@ var main = {
 
 var ui = {
 	$leftDrawer: null,
+	$leftDrawerTog: null,
 
 	// set up the ui
 	setup: function() {
 
-		$leftDrawer = $('#left');
+		console.log("setting up the ui");
 
-		// click with fake / unfin handler
-		$leftDrawer.click( function() {
+		this.$leftDrawer = $('#left');
+		this.$leftDrawerToggle = $('button[data-ui="toggle"][href="#left"]');
 
-			// wrap into its own function
-			// remember to unbind when the drawer closes
-			$('.btn').each( function() {
+		// click handler
+		this.$leftDrawerToggle.bind( 'click', function() {
+
+			ui.leftDrawerEvent();
+
+		});
+
+		// buttons
+
+	},
+
+	leftDrawerEvent: function() {
+
+		if ( !this.$leftDrawer.hasClass('anim-toggled') ) {
+
+			// the drawer isn't toggled. let's open it and bind its ui elements
+			this.$leftDrawer.addClass('anim-toggled');
+			this.$leftDrawerToggle.attr('data-ui-state', 'toggled');
+
+			// hook .btn class
+			this.$leftDrawer.find('.btn').each( function() {
 
 				// bind the click handler to each item
 				$(this).bind( 'click', function() {
 
 					// call click handler, and give it the clicked elem
 					ui.clickHandler( this )
-
 				});
 			});
-		});
 
-		// buttons
+		} else {
 
+			// it did have the class, so it was toggled.
+			// unbind its elements and close it.
+			ui.$leftDrawer.removeClass('anim-toggled');
+			this.$leftDrawerToggle.attr('data-ui-state', '');
+
+			this.$leftDrawer.find('.btn').each( function() {
+
+				// bind the click handler to each item
+				$(this).unbind( 'click' );
+			});
+
+		}
+		
+		
 	},
 
 	clickHandler: function( elem ) {

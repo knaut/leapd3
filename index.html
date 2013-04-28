@@ -25,24 +25,24 @@
 						<div data-ui="subheading">Color Channels</div>
 						<div class="btn-toolbar">
 							<div class="btn-group">
-								<button id="r" class="btn">Red</button>
-								<button id="g" class="btn">Green</button>
-								<button id="b" class="btn">Blue</button>
+								<button id="r" class="btn" data-ui-state="active">Red</button>
+								<button id="g" class="btn" data-ui-state="active">Green</button>
+								<button id="b" class="btn" data-ui-state="active">Blue</button>
 							</div>
 						</div>
 
 						<div data-ui="subheading">Bar Lengths</div>
 						<div class="btn-group-vertical">
-							<button id="length" class="btn">Finger Length</button>
-							<button id="speed" class="btn">Finger Speed</button>
-							<button id="origin" class="btn">Distance from Origin</button>
+							<button id="length" class="btn" data-ui="toggle" data-ui-state="">Finger Length</button>
+							<button id="speed" class="btn" data-ui="toggle" data-ui-state="active">Finger Speed</button>
+							<button id="origin" class="btn" data-ui="toggle" data-ui-state="">Distance from Origin</button>
 						</div>
 
 						<div data-ui="subheading">Bar Colors</div>
 						<div class="btn-group-vertical">
-							<button class="btn">Fingertip Speed</button>
-							<button class="btn">Fingertip Rotation</button>
-							<button class="btn">Fingertip Position</button>
+							<button id="tipSpeed" class="btn" data-ui-state="active">Fingertip Speed</button>
+							<button id="tipRotation" class="btn" data-ui-state="">Fingertip Rotation</button>
+							<button id="tipPosition" class="btn" data-ui-state="">Fingertip Position</button>
 						</div>
 
 					</div>

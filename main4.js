@@ -23,6 +23,16 @@ then…
 	- set finger bar height to be finger lenth, or palm y dist from origin
 */
 
+// sugar
+// do you like your strings camelized?
+// hey baby, can i camelize your strings?
+// hey sugar, want those string camel'd?	// this method gave me <5 pickup line ideas
+String.prototype.camelize = function () {
+    return this.replace (/(?:^|[-_])(\w)/g, function (_, c) {
+      return c ? c.toUpperCase () : '';
+    })
+};
+
 
 
 // global variables from the leap sample
@@ -46,6 +56,9 @@ var main = {
 	fbarFill: '#3C3F40',
 	lastFrame: null,
 	lastFrameHands: null,
+
+	// our data filter obj
+	dataFilter: {},
 
 	// declare our prototype objects
 
@@ -114,14 +127,31 @@ var main = {
 		// on the first fire, the frame hasn't been stored yet.
 		// this creates the first error.
 
+		// here we just check that the hand is visible
 		if ( this.lastFrame.hands[0] ) {
 
+			// bind the data, which must be some kind of array
 			$firstHandBars.data( this.lastFrame.hands[0].fingers ).transition()
+
+				// animate bar height
 				.attr('height', function(d) {
-					return ( d.length.toFixed(1) * 4);
+					if (main.dataFilter.length === "active" ) {  
+						return d.length.toFixed(1) * 4 
+					}
+
+					if (main.dataFilter.speed === "active" ) {  
+						return Math.abs( d.tipVelocity[0].toFixed(1) )
+					}
 				})
 				.attr('y', function(d) {
-					return 400 - ( d.length.toFixed(1) * 4);
+					if (main.dataFilter.length === "active" ) {  
+						return 400 - d.length.toFixed(1) * 4 
+					}
+
+					if (main.dataFilter.speed === "active" ) {  
+						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
+					}
+
 				})
 				.attr('fill', function(d) {
 					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
@@ -129,6 +159,7 @@ var main = {
 		
 		}
 
+		// here we just check that the other hand is visible
 		if ( this.lastFrame.hands[1] ) {
 
 			$secondHandBars.data( this.lastFrame.hands[1].fingers ).transition()
@@ -168,6 +199,27 @@ var ui = {
 		});
 
 		// buttons
+		// use their ids as a data filter value and the ui state as an active/inactive
+		// $('div[data-ui="subheading"]').each( function() {
+
+		// 	var thisSubhead = $( this ).text();
+
+		// 	var subheadContent = [];
+
+		// 	//thisSubhead = thisSubhead.camelize(); 	// why no work?
+
+		// 	main.dataFilter[ thisSubhead ] = {};
+
+		// });
+
+		// for each subheading, scan for btns
+		$('#left').find('.btn').each( function() {
+			
+			var thisId = $( this ).attr( 'id' );				
+			var thisState = $( this ).data( 'ui-state' );				
+			
+			main.dataFilter[ thisId ] = thisState;
+		});
 
 	},
 

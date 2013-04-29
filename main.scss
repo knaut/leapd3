@@ -55,11 +55,14 @@ body {
 }
 
 #header {
-	@include basicGr(#000, #111);
+	//@include basicGr(#000, #111);
 	position: absolute;
 	top: 0;
-	width: 100%;
+	width: 200px;
+	left: 50%;
+	margin-left: -100px;
 	height: 64px;
+	//z-index: 2;
 
 	h1 {
 		@include HelveticaLight;
@@ -67,7 +70,15 @@ body {
 		text-shadow: $textShadow;
 		text-align: center;
 		height: 64px;
+		position: relative;
+		z-index: 2;
 	}
+}
+
+.floating-elem {
+	// elements that need to float above the ui frame
+	position: relative;
+	z-index: 2;
 }
 
 // Visuals
@@ -182,6 +193,9 @@ button.icon {
 	&.parameters{
 		background: url(icons/64_white/menu-2.png) no-repeat;
 	}
+
+	position: relative;
+	z-index: 3;
 }
 
 // controls
@@ -189,11 +203,19 @@ button.icon {
 	// position: relative;
 	// top: 0;
 	height: 64px;
+
 	ul {
 		margin: 0;
 		padding: 0;
 	}
+
+	// floating elements fix
+	// need better way
 }
 
+#finger-panel {
+	@include perspective( 500 );
+	@include rotate3d(0.0, 0.0, 0.5);
+}
 
 

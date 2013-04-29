@@ -163,11 +163,26 @@ var main = {
 		if ( this.lastFrame.hands[1] ) {
 
 			$secondHandBars.data( this.lastFrame.hands[1].fingers ).transition()
+
+				// animate bar height
 				.attr('height', function(d) {
-					return ( d.length.toFixed(1) * 4);
+					if (main.dataFilter.length === "active" ) {  
+						return d.length.toFixed(1) * 4 
+					}
+
+					if (main.dataFilter.speed === "active" ) {  
+						return Math.abs( d.tipVelocity[0].toFixed(1) )
+					}
 				})
 				.attr('y', function(d) {
-					return 400 - ( d.length.toFixed(1) * 4);
+					if (main.dataFilter.length === "active" ) {  
+						return 400 - d.length.toFixed(1) * 4 
+					}
+
+					if (main.dataFilter.speed === "active" ) {  
+						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
+					}
+
 				})
 				.attr('fill', function(d) {
 					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
@@ -182,6 +197,10 @@ var main = {
 var ui = {
 	$leftDrawer: null,
 	$leftDrawerTog: null,
+
+	ToggleGroup: function( elems ) {
+		this.groupElems = elems;
+	},
 
 	// set up the ui
 	setup: function() {
@@ -198,28 +217,40 @@ var ui = {
 
 		});
 
-		// buttons
-		// use their ids as a data filter value and the ui state as an active/inactive
-		// $('div[data-ui="subheading"]').each( function() {
-
-		// 	var thisSubhead = $( this ).text();
-
-		// 	var subheadContent = [];
-
-		// 	//thisSubhead = thisSubhead.camelize(); 	// why no work?
-
-		// 	main.dataFilter[ thisSubhead ] = {};
-
-		// });
-
 		// for each subheading, scan for btns
 		$('#left').find('.btn').each( function() {
 			
 			var thisId = $( this ).attr( 'id' );				
 			var thisState = $( this ).data( 'ui-state' );				
 			
+			// push the state value from the buttons, using their element's id as a key
+			// these will be the values when we initialize
 			main.dataFilter[ thisId ] = thisState;
+
 		});
+
+		// for each button group, make a new toggleGroup object
+		$('div[class*=btn-group]').each( function() {
+
+			var thisGroupElements = $(this).find('button[data-ui="toggle"]');
+
+			// give it all the elements it needs to know about
+			uiToggleGroup = new ui.ToggleGroup( thisGroupElements );
+
+		});
+
+		ui.ToggleGroup.prototype.clickToggle = function( event ) {
+			// the toggle group knows its own elements
+			// some toggles will be multi-select,
+			// some will be exclusive.
+			// let's do exclusives first
+
+			console.log( this, event.target );
+			// we're getting the event target. now,
+			// when we get a click, toggle that data-ui-state
+			// and if it's being toggled to on,
+			// set all in its group to toggled off
+		}
 
 	},
 
@@ -231,14 +262,16 @@ var ui = {
 			this.$leftDrawer.addClass('anim-toggled');
 			this.$leftDrawerToggle.attr('data-ui-state', 'toggled');
 
-			// hook .btn class
-			this.$leftDrawer.find('.btn').each( function() {
+			// find all our toggle groups
+			this.$leftDrawer.find('div[data-ui="toggle-group"]').each( function() {
 
 				// bind the click handler to each item
-				$(this).bind( 'click', function() {
+				$(this).bind( 'click', function(event) {
 
 					// call click handler, and give it the clicked elem
-					ui.clickHandler( this )
+					uiToggleGroup.clickToggle( event );
+					//console.log( event );
+
 				});
 			});
 

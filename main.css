@@ -19,23 +19,11 @@ body {
   /* W3C */ }
 
 #header {
-  background: black;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, black 0%, #111111 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, black), color-stop(100%, #111111));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top, black 0%, #111111 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top, black 0%, #111111 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(top, black 0%, #111111 100%);
-  /* IE10+ */
-  background: linear-gradient(to bottom, black 0%, #111111 100%);
-  /* W3C */
   position: absolute;
   top: 0;
-  width: 100%;
+  width: 200px;
+  left: 50%;
+  margin-left: -100px;
   height: 64px; }
   #header h1 {
     font-family: "HelveticaNeue-UltraLight";
@@ -43,7 +31,13 @@ body {
     color: #eeeeee;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
     text-align: center;
-    height: 64px; }
+    height: 64px;
+    position: relative;
+    z-index: 2; }
+
+.floating-elem {
+  position: relative;
+  z-index: 2; }
 
 #finger-panel {
   background: black;
@@ -161,7 +155,9 @@ button.icon {
   -moz-transition: opacity 0.3s ease-in-out;
   -ms-transition: opacity 0.3s ease-in-out;
   -o-transition: opacity 0.3s ease-in-out;
-  transition: opacity 0.3s ease-in-out; }
+  transition: opacity 0.3s ease-in-out;
+  position: relative;
+  z-index: 3; }
   button.icon .text {
     display: none; }
   button.icon:hover, button.icon[data-ui-state="toggled"] {
@@ -174,3 +170,17 @@ button.icon {
   #controls ul {
     margin: 0;
     padding: 0; }
+
+#finger-panel {
+  -webkit-perspective: 500;
+  -moz-perspective: 500;
+  -o-perspective: 500;
+  perspective: 500;
+  -webkit-transform: rotateX(0) rotateY(0) rotateZ(0.5);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform: rotateX(0) rotateY(0) rotateZ(0.5);
+  -moz-transform-style: preserve-3d;
+  -o-transform: rotateX(0) rotateY(0) rotateZ(0.5);
+  -o-transform-style: preserve-3d;
+  transform: rotateX(0) rotateY(0) rotateZ(0.5);
+  transform-style: preserve-3d; }

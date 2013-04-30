@@ -173,6 +173,13 @@ body {
 	}
 }
 
+// buttons / toggles 
+[data-ui="toggle"] {
+	&[data-ui-state="active"] {
+		@include basicGr(#333, #999);
+	}
+}
+
 // floating buttons/icons
 button.icon {
 	// clear button styles

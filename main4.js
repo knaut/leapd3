@@ -35,6 +35,7 @@ String.prototype.camelize = function () {
 
 
 
+
 // global variables from the leap sample
 var paused = false;
 var pauseOnGesture = false;
@@ -142,6 +143,10 @@ var main = {
 					if (main.dataFilter.speed === "active" ) {  
 						return Math.abs( d.tipVelocity[0].toFixed(1) )
 					}
+
+					if (main.dataFilter.origin === "active" ) {  
+						return Math.abs( d.tipPosition[1].toFixed(1) )
+					}
 				})
 				.attr('y', function(d) {
 					if (main.dataFilter.length === "active" ) {  
@@ -150,6 +155,10 @@ var main = {
 
 					if (main.dataFilter.speed === "active" ) {  
 						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
+					}
+
+					if (main.dataFilter.origin === "active" ) {  
+						return 400 - Math.abs( d.tipPosition[1].toFixed(1) )
 					}
 
 				})
@@ -173,6 +182,11 @@ var main = {
 					if (main.dataFilter.speed === "active" ) {  
 						return Math.abs( d.tipVelocity[0].toFixed(1) )
 					}
+
+					if (main.dataFilter.origin === "active" ) {  
+						return Math.abs( d.tipPosition[1].toFixed(1) )
+					}
+
 				})
 				.attr('y', function(d) {
 					if (main.dataFilter.length === "active" ) {  
@@ -183,6 +197,10 @@ var main = {
 						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
 					}
 
+					if (main.dataFilter.origin === "active" ) {  
+						return 400 - Math.abs( d.tipPosition[1].toFixed(1) )
+					}
+
 				})
 				.attr('fill', function(d) {
 					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
@@ -191,6 +209,7 @@ var main = {
 		}	
 	}
 }
+
 
 // ui object
 
@@ -245,11 +264,68 @@ var ui = {
 			// some will be exclusive.
 			// let's do exclusives first
 
-			console.log( this, event.target );
 			// we're getting the event target. now,
 			// when we get a click, toggle that data-ui-state
 			// and if it's being toggled to on,
 			// set all in its group to toggled off
+
+			var $thisToggle = $( event.target );
+			var $theseSiblings = $( event.target ).siblings('button');
+
+			var thisId = $thisToggle.attr('id');
+			var thisState = $thisToggle.attr('data-ui-state');
+
+			console.log( 'this state was: ' + thisState );
+			//console.log(this);
+
+			// if this toggle was not active
+			if ( !thisState ) {
+
+
+				// set its state
+				$thisToggle.attr('data-ui-state', 'active');
+
+				console.log(thisId);
+				// update the data filter
+				main.dataFilter[thisId] = 'active';
+
+				//console.log(main.dataFilter);
+
+				// do the same for the siblings
+				$theseSiblings.each( function(key, index) {
+
+					// set their attributes
+					$(this).attr('data-ui-state', '');
+
+					// get the ids and states while we loop
+					var thisId = $(this).attr('id');
+					var thisState = $(this).data('ui-state');
+
+
+
+					if ( main.dataFilter.hasOwnProperty( thisId ) ) {
+						console.log('dataFilter has the property: ' + thisId);
+						console.log(index);
+
+						main.dataFilter[thisId] = '';
+
+					 }
+
+					// heres what we need to do.
+					// in this loop, iterate thru
+					// the object properties, matching the id
+					// to the filter keys.
+					// if they match, save the state
+					// to the key's value.
+
+					
+
+
+				});
+
+				console.log( main.dataFilter );
+
+			}
 		}
 
 	},

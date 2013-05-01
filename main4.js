@@ -61,6 +61,12 @@ var main = {
 	// our data filter obj
 	dataFilter: {},
 
+	// default dataset for fingerbars
+	noData: [20, 20, 20, 20, 20],
+
+	// turn it down a notch
+	notch: .5,
+
 	// declare our prototype objects
 
 	// initialize
@@ -75,6 +81,7 @@ var main = {
 		// set the x offsets
 		var xOffset = 100;
 
+		// offset our bars programmatically
 		$('#first-hand .finger-bar').each( function(index) {
 			// we offset their x by multiplying their index
 			// by some arbitrary distance
@@ -82,6 +89,7 @@ var main = {
 			this.setAttribute('x', index);
 		});
 
+		// same for the second hand
 		$('#second-hand .finger-bar').each( function(index) {
 			// we offset their x by multiplying their index
 			// by some arbitrary distance
@@ -90,12 +98,46 @@ var main = {
 			this.setAttribute('x', index);
 		});
 
+		// initialize our dataFilter
+		this.initDataFilter();
+
 		// start the leap loop
 		this.leapLoop( 100 );
 
 		// setup the ui
 		ui.setup();
 		
+	},
+
+	initDataFilter: function() {
+		// we set our initial states for the data filter
+		// based on the attributes already set in the DOM.
+		
+		// for each subheading, scan for btns
+		$('#left').find('.btn').each( function() {
+			
+			var thisId = $( this ).attr( 'id' );				
+			var thisState = $( this ).data( 'ui-state' );				
+			
+			// push the state value from the buttons, using their element's id as a key
+			// these will be the values when we initialize
+			main.dataFilter[ thisId ] = thisState;
+
+		});
+	},
+
+	updateDataFilter: function( id, state) {
+		var thisId = id;
+		var thisState = state;
+
+		// we check if the id passed matches a property
+		if ( main.dataFilter.hasOwnProperty( thisId ) ) {
+
+			// if so, we set its value to the passed state
+			main.dataFilter[ thisId ] = thisState;
+
+			console.log( main.dataFilter[ thisId ] );
+		}
 	},
 
 	// main program functions
@@ -163,9 +205,24 @@ var main = {
 
 				})
 				.attr('fill', function(d) {
-					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+					return 'rgb( ' + (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch)
+						+ ', ' + (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch)
+						+ ', ' + (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch)
+						+ ' )';
 				});
 		
+		} else {
+
+			$firstHandBars.data( main.noData ).transition()
+				.attr( 'height', function(d) {
+					return d;
+				})
+				.attr( 'y', function(d) {
+					return 400 - d; 
+				})
+				.attr( 'fill', function(d) {
+					return 'rgb( ' + d + ', ' + d + ', ' + d + ' )';
+				});
 		}
 
 		// here we just check that the other hand is visible
@@ -180,7 +237,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return Math.abs( d.tipVelocity[0].toFixed(1) )
+						return Math.abs( (d.tipVelocity[0].toFixed(1) * .75) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
@@ -194,7 +251,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
+						return 400 - Math.abs( (d.tipVelocity[0].toFixed(1) * .75) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
@@ -203,10 +260,25 @@ var main = {
 
 				})
 				.attr('fill', function(d) {
-					return 'rgb( ' + (d.tipVelocity[0] * 10) + ', ' + (d.tipVelocity[1] * 10) + ', ' + (d.tipVelocity[2] * 10) + ' )';
+					return 'rgb( ' + (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch)
+						+ ', ' + (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch)
+						+ ', ' + (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch)
+						+ ' )';
 				});
 		
-		}	
+		} else {
+
+			$secondHandBars.data( main.noData ).transition()
+				.attr( 'height', function(d) {
+					return d;
+				})
+				.attr( 'y', function(d) {
+					return 400 - d; 
+				})
+				.attr( 'fill', function(d) {
+					return 'rgb( ' + d + ', ' + d + ', ' + d + ' )';
+				});
+		}
 	}
 }
 
@@ -233,18 +305,6 @@ var ui = {
 		this.$leftDrawerToggle.bind( 'click', function() {
 
 			ui.leftDrawerEvent();
-
-		});
-
-		// for each subheading, scan for btns
-		$('#left').find('.btn').each( function() {
-			
-			var thisId = $( this ).attr( 'id' );				
-			var thisState = $( this ).data( 'ui-state' );				
-			
-			// push the state value from the buttons, using their element's id as a key
-			// these will be the values when we initialize
-			main.dataFilter[ thisId ] = thisState;
 
 		});
 
@@ -281,13 +341,11 @@ var ui = {
 			// if this toggle was not active
 			if ( !thisState ) {
 
+				// update our data filter
+				main.updateDataFilter( thisId, 'active' );
 
-				// set its state
+				// set our state in the DOM
 				$thisToggle.attr('data-ui-state', 'active');
-
-				console.log(thisId);
-				// update the data filter
-				main.dataFilter[thisId] = 'active';
 
 				//console.log(main.dataFilter);
 
@@ -299,27 +357,11 @@ var ui = {
 
 					// get the ids and states while we loop
 					var thisId = $(this).attr('id');
-					var thisState = $(this).data('ui-state');
 
-
-
-					if ( main.dataFilter.hasOwnProperty( thisId ) ) {
-						console.log('dataFilter has the property: ' + thisId);
-						console.log(index);
-
-						main.dataFilter[thisId] = '';
-
-					 }
-
-					// heres what we need to do.
-					// in this loop, iterate thru
-					// the object properties, matching the id
-					// to the filter keys.
-					// if they match, save the state
-					// to the key's value.
-
-					
-
+					// update our data filter. 
+					// we're turning the siblings associated filters off,
+					// so we pass an empty string
+					main.updateDataFilter( thisId, '' );
 
 				});
 

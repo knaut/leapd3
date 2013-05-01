@@ -65,7 +65,7 @@ var main = {
 	noData: [20, 20, 20, 20, 20],
 
 	// turn it down a notch
-	notch: .5,
+	notch: .4,
 
 	// declare our prototype objects
 

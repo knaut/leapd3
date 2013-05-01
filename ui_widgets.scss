@@ -1,0 +1,159 @@
+// ui widgets
+
+// a widget does one thing well. it's usually an interaction piece. it can read and set data, 
+// fire functions, or maybe even send events. widgets can contain widgets (?*)
+// a widget should be skinnable. its html skeleton is marked up with attributes
+
+/* widget!:*
+	does one thing well - ?*: set a toggle, or push a button, or flip a grid column (?*)
+	- can read and set data
+	- can fire functions
+	- could send events?
+
+	? * html skeleton -> data attrs
+	js -> prototypal methods 
+		- initializers functions, configurable with objects * 
+									- think skinning, 
+									  setting models or feeding urls
+
+ui widget styles here should be structural vs presentational
+or - > * 
+	layout structure, as necessary -> data attrs styles, as below
+	- presentation? skinns? -> css classes
+
+	- lock into sass? no -> css classes
+		ex: ghost-drawer?
+*/
+
+@import "ui_kit.scss";
+
+// ghost color scheme
+$ghostLightGray: rgba(250, 250, 250, 0.4);
+$ghostGray: rgba(10, 10, 10, 0.7);
+$ghostWhite: rgba(255, 255, 255, 0.8);
+
+$ghostRad: 4px;
+
+$textHilight: 0 1px 0 rgba(255, 255, 255, 0.4);
+$textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+$width: 250px;
+
+@mixin HelveticaLight {
+	font-family: "HelveticaNeue-Light";
+	font-weight: lighter !important;
+}
+
+@mixin HelveticaUltraLight {
+	font-family: "HelveticaNeue-UltraLight";
+	font-weight: lighter !important;
+}
+
+@mixin ghostBtn {
+	border: 0;
+	@include borderRads( $ghostRad );
+	background: $ghostLightGray;
+	font-size: 18px;
+	padding: 5px 8px;
+	@include transition( all .3s ease-in-out);
+	
+	&:hover {
+		background: $ghostWhite;
+		border-color: $ghostLightGray;
+	}
+}
+
+@mixin ghostDrawer {
+
+	background: $ghostGray;
+	border-right: 5px solid rgba(255, 255, 255, 0.1);
+	width: $width;
+	@include transition( border-right-color .3s ease-in-out);
+
+	&.anim-toggled {	// anim classes? or on attrs?
+		border-right: 5px solid rgba(255, 255, 255, 0.4);
+		@include transition( border-right-color .3s ease-in-out);
+		
+	}
+}
+
+body {
+	@include HelveticaLight;
+	color: #eee;
+}
+
+// the frame contains a ui layer. in our case, it's above our content,
+// which is the svg render
+[data-ui="frame"] {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+}
+
+// ui widgets
+[data-ui="drawer"] {
+	@include boxShadow( inset -10px 0 20px rgba(0, 0, 0, 0.6));
+	@include ghostDrawer;
+	
+	height: 100%;
+	float: left;
+
+	&#left {
+		margin-left: -$width;
+		@include transition(margin-left .3s ease-in-out);
+
+		&.anim-toggled {
+			margin-left: 0;
+		}
+	}
+
+	&#right {
+		margin-right: -$width;
+	}
+}
+
+// collapsible accordion-style widget
+[data-ui="collapsible"] {
+	& > [data-ui="heading"] {
+		@include boxShadow(0 5px 15px rgba(0, 0, 0, 0.7));
+		background: rgba(150, 150, 150, 0.1);
+		@include HelveticaUltraLight;
+		text-shadow: $textShadow;
+		padding: 15px;
+		font-size: 24px;
+		letter-spacing: 1px;
+	}
+
+	[data-ui="subheading"] {
+		//@include HelveticaLight;
+		background: rgba(50, 50, 50, 0.1);
+		color: #ccc;
+		text-shadow: $textShadow;
+		padding: 5px 15px;
+		margin: 20px 0;
+		text-align: left;
+	}
+
+	& > [data-ui="content"] {
+
+		// just the first-level button groups, please
+		& > div[class*="btn-"] {
+			margin-left: 20px;
+		}
+	}
+}
+
+// buttons / toggles 
+[data-ui="toggle"] {
+	@include HelveticaLight;
+
+	&[data-ui-state="active"] {
+		background: $ghostLightGray;
+	}
+}
+
+// clearing button styles - can 
+[data-ui-btn] {
+	@include ghostBtn;
+}

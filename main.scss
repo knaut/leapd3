@@ -1,6 +1,7 @@
 // simple styling for Leap data console.
 
 @import "ui_kit.scss";
+@import "ui_widgets.scss";
 
 // vlad color scheme
 $vladGray: #3C3F40;
@@ -18,10 +19,17 @@ $bright: #eee;
 $textHilight: 0 1px 0 rgba(255, 255, 255, 0.4);
 $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
+$width: 250px;
+
 
 // Mixins
 @mixin HelveticaLight {
-	font-family: "HelveticaNeue-UltraLight";
+	font-family: "HelveticaNeue-Light";
+	font-weight: lighter !important;
+}
+
+@mixin HelveticaUltraLight {
+	font-family: "HelveticaNeue-UltraLight" !important;
 	font-weight: lighter !important;
 }
 
@@ -45,6 +53,8 @@ $textShadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
 
 html, body {
 	height: 100%;
+	padding: 0;
+	margin: 0;
 }
 
 // App Styling
@@ -53,6 +63,8 @@ body {
 	@include basicGr(#121212, #000);
 
 }
+
+
 
 #header {
 	//@include basicGr(#000, #111);
@@ -65,7 +77,7 @@ body {
 	//z-index: 2;
 
 	h1 {
-		@include HelveticaLight;
+		@include HelveticaUltraLight;
 		color: 	$bright;
 		text-shadow: $textShadow;
 		text-align: center;
@@ -105,80 +117,7 @@ body {
 	}
 }
 
-// the frame contains a ui layer. in our case, it's above our content,
-// which is the svg render
-[data-ui="frame"] {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	z-index: 2;
-}
 
-// ui widgets
-[data-ui="drawer"] {
-	$width: 250px;
-
-	@include boxShadow(inset -5px 0 20px rgba(0, 0, 0, 0.4));
-	@include patternBg( $bgBrushed, #999 );
-	//position: absolute;
-	//top: 0;
-	width: $width;
-	height: 100%;
-	float: left;
-
-	&#left {
-		margin-left: -$width;
-		@include transition(margin-left .3s ease-in-out);
-
-		&.anim-toggled {
-			margin-left: 0;
-		}
-	}
-
-	&#right {
-		margin-right: -$width;
-	}
-}
-
-// collapsible accordion-style widget
-[data-ui="collapsible"] {
-	& > [data-ui="heading"] {
-		@include boxShadow(0 2px 15px rgba(0, 0, 0, 0.7));
-		@include basicGr(#777, #333);
-		@include HelveticaLight;
-		text-shadow: $textShadow;
-		padding: 15px;
-		font-size: 24px;
-		letter-spacing: 1px;
-	}
-
-	[data-ui="subheading"] {
-		//@include HelveticaLight;
-		@include basicGr(#888, #444);
-		color: #efefef;
-		border-top: 1px solid #6f6f6f;
-		border-bottom: 1px solid #ccc;
-		text-shadow: $textShadow;
-		padding: 5px 15px;
-		margin: 20px 0;
-		text-align: left;
-	}
-
-	& > [data-ui="content"] {
-
-		// just the first-level button groups, please
-		& > div[class*="btn-"] {
-			margin-left: 20px;
-		}
-	}
-}
-
-// buttons / toggles 
-[data-ui="toggle"] {
-	&[data-ui-state="active"] {
-		@include basicGr(#333, #999);
-	}
-}
 
 // floating buttons/icons
 button.icon {
@@ -220,9 +159,9 @@ button.icon {
 	// need better way
 }
 
-#finger-panel {
-	@include perspective( 500 );
-	@include rotate3d(0.0, 0.0, 0.5);
-}
+// #finger-panel {
+// 	@include perspective( 500 );
+// 	@include rotate3d(0.0, 0.0, 0.5);
+// }
 
 

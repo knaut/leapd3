@@ -37,20 +37,10 @@ body {
   background: rgba(10, 10, 10, 0.7);
   border-right: 5px solid rgba(255, 255, 255, 0.1);
   width: 250px;
-  -webkit-transition: border-right-color 0.3s ease-in-out;
-  -moz-transition: border-right-color 0.3s ease-in-out;
-  -ms-transition: border-right-color 0.3s ease-in-out;
-  -o-transition: border-right-color 0.3s ease-in-out;
-  transition: border-right-color 0.3s ease-in-out;
   height: 100%;
   float: left; }
   [data-ui="drawer"].anim-toggled {
-    border-right: 5px solid rgba(255, 255, 255, 0.4);
-    -webkit-transition: border-right-color 0.3s ease-in-out;
-    -moz-transition: border-right-color 0.3s ease-in-out;
-    -ms-transition: border-right-color 0.3s ease-in-out;
-    -o-transition: border-right-color 0.3s ease-in-out;
-    transition: border-right-color 0.3s ease-in-out; }
+    border-right: 5px solid rgba(255, 255, 255, 0.4); }
   [data-ui="drawer"]#left {
     margin-left: -250px;
     -webkit-transition: margin-left 0.3s ease-in-out;

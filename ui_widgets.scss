@@ -68,11 +68,8 @@ $width: 250px;
 	background: $ghostGray;
 	border-right: 5px solid rgba(255, 255, 255, 0.1);
 	width: $width;
-	@include transition( border-right-color .3s ease-in-out);
 
 	&.anim-toggled {	// anim classes? or on attrs?
-		border-right: 5px solid rgba(255, 255, 255, 0.4);
-		@include transition( border-right-color .3s ease-in-out);
 		
 	}
 }

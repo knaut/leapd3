@@ -1,6 +1,6 @@
 /* widget!:*
 	does one thing well - ?*: set a toggle, or push a button, or flip a grid column (?*)
-	- can read and set data
+	- can read and set data () in an external model AND in the dom
 	- can fire functions
 	- could send events?
 
@@ -94,6 +94,9 @@ body {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
   [data-ui-btn]:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(250, 250, 250, 0.4); }
+  [data-ui-btn][data-ui-state="active"] {
     background: rgba(255, 255, 255, 0.8);
     border-color: rgba(250, 250, 250, 0.4); }
 

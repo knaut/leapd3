@@ -6,7 +6,7 @@
 
 /* widget!:*
 	does one thing well - ?*: set a toggle, or push a button, or flip a grid column (?*)
-	- can read and set data
+	- can read and set data () in an external model AND in the dom
 	- can fire functions
 	- could send events?
 
@@ -58,6 +58,11 @@ $width: 250px;
 	@include transition( all .3s ease-in-out);
 	
 	&:hover {
+		background: $ghostWhite;
+		border-color: $ghostLightGray;
+	}
+
+	&[data-ui-state="active"] {
 		background: $ghostWhite;
 		border-color: $ghostLightGray;
 	}

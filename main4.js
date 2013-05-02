@@ -65,7 +65,7 @@ var main = {
 	noData: [20, 20, 20, 20, 20],
 
 	// turn it down a notch
-	notch: .4,
+	notch: .3,
 
 	// declare our prototype objects
 
@@ -205,10 +205,25 @@ var main = {
 
 				})
 				.attr('fill', function(d) {
-					return 'rgb( ' + (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch)
-						+ ', ' + (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch)
-						+ ', ' + (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch)
-						+ ' )';
+					
+					// make a color strings that holds our rgb fill vals
+					var thisR, thisG, thisB;
+
+					thisR = thisG = thisB = 0;	// set them all to 0
+					
+					if (main.dataFilter.r === "active") {
+						thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+					}
+
+					if (main.dataFilter.g === "active") {
+						thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
+					}
+
+					if (main.dataFilter.b === "active") {
+						thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+					}
+
+					return 'rgb( ' + thisR + ', ' + thisG + ', ' + thisB + ' )';
 				});
 		
 		} else {
@@ -260,10 +275,25 @@ var main = {
 
 				})
 				.attr('fill', function(d) {
-					return 'rgb( ' + (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch)
-						+ ', ' + (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch)
-						+ ', ' + (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch)
-						+ ' )';
+					
+					// make a color strings that holds our rgb fill vals
+					var thisR, thisG, thisB;
+
+					thisR = thisG = thisB = 0;	// set them all to 0
+					
+					if (main.dataFilter.r === "active") {
+						thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+					}
+
+					if (main.dataFilter.g === "active") {
+						thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
+					}
+
+					if (main.dataFilter.b === "active") {
+						thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+					}
+
+					return 'rgb( ' + thisR + ', ' + thisG + ', ' + thisB + ' )';
 				});
 		
 		} else {

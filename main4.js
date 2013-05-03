@@ -210,17 +210,41 @@ var main = {
 					var thisR, thisG, thisB;
 
 					thisR = thisG = thisB = 0;	// set them all to 0
-					
-					if (main.dataFilter.r === "active") {
-						thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+
+					// first filter: tipSpeed
+					if (main.dataFilter.tipSpeed === "active") {
+
+						// rgb corresponds to xyz
+						if (main.dataFilter.r === "active") {
+							thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+						}
+
+						if (main.dataFilter.g === "active") {
+							thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
+						}
+
+						if (main.dataFilter.b === "active") {
+							thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+						}
+
 					}
 
-					if (main.dataFilter.g === "active") {
-						thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
-					}
+					// next filter: tipRotation
+					if (main.dataFilter.tipPosition === "active") {
 
-					if (main.dataFilter.b === "active") {
-						thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+						// rgb corresponds to xyz
+						if (main.dataFilter.r === "active") {
+							thisR = (d.tipPosition[0] * 5).toFixed(1);
+						}
+
+						if (main.dataFilter.g === "active") {
+							thisG = (d.tipPosition[1] * 5).toFixed(1);
+						}
+
+						if (main.dataFilter.b === "active") {
+							thisB = (d.tipPosition[2] * 5).toFixed(1);
+						}
+
 					}
 
 					return 'rgb( ' + thisR + ', ' + thisG + ', ' + thisB + ' )';

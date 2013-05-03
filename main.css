@@ -1,105 +1,3 @@
-/* widget!:*
-	does one thing well - ?*: set a toggle, or push a button, or flip a grid column (?*)
-	- can read and set data () in an external model AND in the dom
-	- can fire functions
-	- could send events?
-
-	? * html skeleton -> data attrs
-	js -> prototypal methods 
-		- initializers functions, configurable with objects * 
-									- think skinning, 
-									  setting models or feeding urls
-
-ui widget styles here should be structural vs presentational
-or - > * 
-	layout structure, as necessary -> data attrs styles, as below
-	- presentation? skinns? -> css classes
-
-	- lock into sass? no -> css classes
-		ex: ghost-drawer?
-*/
-body {
-  font-family: "HelveticaNeue-Light";
-  font-weight: lighter !important;
-  color: #eee; }
-
-[data-ui="frame"] {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: 2; }
-
-[data-ui="drawer"] {
-  -webkit-box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.6);
-  -o-box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.6);
-  box-shadow: inset -10px 0 20px rgba(0, 0, 0, 0.6);
-  background: rgba(10, 10, 10, 0.7);
-  border-right: 5px solid rgba(255, 255, 255, 0.1);
-  width: 250px;
-  height: 100%;
-  float: left; }
-  [data-ui="drawer"]#left {
-    margin-left: -250px;
-    -webkit-transition: margin-left 0.3s ease-in-out;
-    -moz-transition: margin-left 0.3s ease-in-out;
-    -ms-transition: margin-left 0.3s ease-in-out;
-    -o-transition: margin-left 0.3s ease-in-out;
-    transition: margin-left 0.3s ease-in-out; }
-    [data-ui="drawer"]#left.anim-toggled {
-      margin-left: 0; }
-  [data-ui="drawer"]#right {
-    margin-right: -250px; }
-
-[data-ui="collapsible"] > [data-ui="heading"] {
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-  -o-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-  background: rgba(150, 150, 150, 0.1);
-  font-family: "HelveticaNeue-UltraLight";
-  font-weight: lighter !important;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  font-size: 24px;
-  letter-spacing: 1px; }
-[data-ui="collapsible"] [data-ui="subheading"] {
-  background: rgba(50, 50, 50, 0.1);
-  color: #ccc;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  padding: 5px 15px;
-  margin: 20px 0;
-  text-align: left; }
-[data-ui="collapsible"] > [data-ui="content"] > div[class*="btn-"] {
-  margin-left: 20px; }
-
-[data-ui="toggle"] {
-  font-family: "HelveticaNeue-Light";
-  font-weight: lighter !important; }
-  [data-ui="toggle"][data-ui-state="active"] {
-    background: rgba(250, 250, 250, 0.4); }
-
-[data-ui-btn] {
-  border: 0;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  background: rgba(250, 250, 250, 0.4);
-  font-size: 18px;
-  padding: 5px 8px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out; }
-  [data-ui-btn]:hover {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(250, 250, 250, 0.4); }
-  [data-ui-btn][data-ui-state="active"] {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(250, 250, 250, 0.4); }
-
 html, body {
   height: 100%;
   padding: 0;
@@ -197,3 +95,12 @@ button.icon {
   #controls ul {
     margin: 0;
     padding: 0; }
+
+button#r[data-ui-state="active"] {
+  color: #B24009; }
+
+button#g[data-ui-state="active"] {
+  color: #3DB212; }
+
+button#b[data-ui-state="active"] {
+  color: #3840FF; }

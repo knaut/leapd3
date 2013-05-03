@@ -1,7 +1,6 @@
 // simple styling for Leap data console.
 
 @import "ui_kit.scss";
-@import "ui_widgets.scss";
 
 // vlad color scheme
 $vladGray: #3C3F40;
@@ -157,6 +156,24 @@ button.icon {
 
 	// floating elements fix
 	// need better way
+}
+
+button#r {
+	&[data-ui-state="active"] {
+		color: #B24009;
+	}
+}
+
+button#g {
+	&[data-ui-state="active"] {
+		color: #3DB212;
+	}
+}
+
+button#b {
+	&[data-ui-state="active"] {
+		color: #3840FF;
+	}
 }
 
 // #finger-panel {

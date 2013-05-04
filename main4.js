@@ -126,7 +126,7 @@ var main = {
 		});
 	},
 
-	updateDataFilter: function( id, state) {
+	updateDataFilter: function( id, state ) {
 		var thisId = id;
 		var thisState = state;
 
@@ -136,7 +136,7 @@ var main = {
 			// if so, we set its value to the passed state
 			main.dataFilter[ thisId ] = thisState;
 
-			console.log( main.dataFilter[ thisId ] );
+			console.log('updated dataFilter: ' + thisId);
 		}
 	},
 
@@ -183,7 +183,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return Math.abs( d.tipVelocity[0].toFixed(1) )
+						return Math.abs( d.tipVelocity[1].toFixed(1) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
@@ -196,7 +196,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return 400 - Math.abs( d.tipVelocity[0].toFixed(1) )
+						return 400 - Math.abs( d.tipVelocity[1].toFixed(1) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
@@ -276,7 +276,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return Math.abs( (d.tipVelocity[0].toFixed(1) * .75) )
+						return Math.abs( (d.tipVelocity[1].toFixed(1) * .75) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
@@ -290,7 +290,7 @@ var main = {
 					}
 
 					if (main.dataFilter.speed === "active" ) {  
-						return 400 - Math.abs( (d.tipVelocity[0].toFixed(1) * .75) )
+						return 400 - Math.abs( (d.tipVelocity[1].toFixed(1) * .75) )
 					}
 
 					if (main.dataFilter.origin === "active" ) {  

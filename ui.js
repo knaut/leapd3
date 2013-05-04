@@ -41,13 +41,14 @@ var ui = {
 
 		// click handler
 		this.$leftDrawerToggle.bind( 'click', function() {
+			console.log('left drawer event');
 
 			ui.leftDrawerEvent();
 
 		});
 
 		// for each button group, make a new toggleGroup object
-		$('div[class*=btn-group]').each( function() {
+		$('div[data-ui="toggle-group"]').each( function() {
 
 			var thisGroupElements = $(this).find('button[data-ui="toggle"]');
 
@@ -73,15 +74,13 @@ var ui = {
 			// when we get a click, toggle that data-ui-state
 			// and if it's being toggled to on,
 			// set all in its group to toggled off
+			console.log('toggle group event');
 
 			var $thisToggle = $( event.target );
 			var $theseSiblings = $( event.target ).siblings('button');
 
 			var thisId = $thisToggle.attr('id');
 			var thisState = $thisToggle.attr('data-ui-state');
-
-			console.log( 'this state was: ' + thisState );
-			//console.log(this);
 
 			// if this toggle was not active
 			if ( !thisState ) {
@@ -109,23 +108,19 @@ var ui = {
 					main.updateDataFilter( thisId, '' );
 
 				});
-
-				console.log( main.dataFilter );
-
 			}
 		}
 
 		ui.MultiToggle.prototype.eventHandle = function( event ) {
-			// console.log('logging "this" from the prototype: ' + this );
-			// console.log(this.multiElems);
-			// console.log(this.multiElems[1]);
-			// console.log(this.multiElems[1].getAttribute('id'));
+			console.log('multi-toggle event');
 
 			// do it the easy way first
 			var $thisElem = $(event.target);
 			var thisId = $thisElem.attr('id');
 
 			if ( $thisElem.attr('data-ui-state') === '' ) {
+
+				console.log(thisId + ' active');
 
 				// it was inactive, let's turn it on
 				$thisElem.attr('data-ui-state', 'active');
@@ -134,8 +129,10 @@ var ui = {
 				main.updateDataFilter( thisId, 'active' );
 
 			} else {
-
-				// it had a state, which means it was active
+				
+				console.log(thisId + ' inactive');
+				
+				// make it inactive
 				$thisElem.attr('data-ui-state', '');
 
 				main.updateDataFilter( thisId, '' );

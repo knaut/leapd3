@@ -64,8 +64,11 @@ var main = {
 	// default dataset for fingerbars
 	noData: [20, 20, 20, 20, 20],
 
-	// turn it down a notch
+	// arbitrary value to turn it down a notch
 	notch: .3,
+
+	// scales
+	distanceScale: null,
 
 	// declare our prototype objects
 
@@ -97,6 +100,8 @@ var main = {
 			index += 100; // compensation for lack of right-side alignment
 			this.setAttribute('x', index);
 		});
+
+		this.distanceScale = d3.scale.linear().domain([0, 500]).range([0, 400]);
 
 		// initialize our dataFilter
 		this.initDataFilter();
@@ -187,7 +192,7 @@ var main = {
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
-						return Math.abs( d.tipPosition[1].toFixed(1) )
+						return main.distanceScale(Math.abs( d.tipPosition[1]).toFixed(1));
 					}
 				})
 				.attr('y', function(d) {
@@ -200,7 +205,7 @@ var main = {
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
-						return 400 - Math.abs( d.tipPosition[1].toFixed(1) )
+						return 400 - main.distanceScale(Math.abs( d.tipPosition[1]).toFixed(1));
 					}
 
 				})

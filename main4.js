@@ -69,6 +69,7 @@ var main = {
 
 	// scales
 	distanceScale: null,
+	colorScale: null,
 
 	// declare our prototype objects
 
@@ -101,7 +102,9 @@ var main = {
 			this.setAttribute('x', index);
 		});
 
+		// init scales
 		this.distanceScale = d3.scale.linear().domain([0, 500]).range([0, 400]);
+		this.colorScale = d3.scale.linear().domain([0, 500]).range([0, 255]);
 
 		// initialize our dataFilter
 		this.initDataFilter();
@@ -216,12 +219,12 @@ var main = {
 
 					thisR = thisG = thisB = 0;	// set them all to 0
 
-					// first filter: tipSpeed
+					// set color channel vals based on this tip speed
 					if (main.dataFilter.tipSpeed === "active") {
 
 						// rgb corresponds to xyz
 						if (main.dataFilter.r === "active") {
-							thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+							thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1));
 						}
 
 						if (main.dataFilter.g === "active") {
@@ -234,20 +237,20 @@ var main = {
 
 					}
 
-					// next filter: tipRotation
+					// set color channel vals based on this tip position
 					if (main.dataFilter.tipPosition === "active") {
 
 						// rgb corresponds to xyz
 						if (main.dataFilter.r === "active") {
-							thisR = (d.tipPosition[0] * 5).toFixed(1);
+							thisR = main.colorScale(Math.abs(d.tipPosition[0]).toFixed(1));
 						}
 
 						if (main.dataFilter.g === "active") {
-							thisG = (d.tipPosition[1] * 5).toFixed(1);
+							thisG = main.colorScale(Math.abs(d.tipPosition[1]).toFixed(1));
 						}
 
 						if (main.dataFilter.b === "active") {
-							thisB = (d.tipPosition[2] * 5).toFixed(1);
+							thisB = main.colorScale(Math.abs(d.tipPosition[2]).toFixed(1));
 						}
 
 					}
@@ -285,7 +288,7 @@ var main = {
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
-						return Math.abs( d.tipPosition[1].toFixed(1) )
+						return main.distanceScale(Math.abs( d.tipPosition[1] ).toFixed(1));
 					}
 
 				})
@@ -299,7 +302,7 @@ var main = {
 					}
 
 					if (main.dataFilter.origin === "active" ) {  
-						return 400 - Math.abs( d.tipPosition[1].toFixed(1) )
+						return 400 - main.distanceScale(Math.abs( d.tipPosition[1] ).toFixed(1));
 					}
 
 				})
@@ -309,17 +312,41 @@ var main = {
 					var thisR, thisG, thisB;
 
 					thisR = thisG = thisB = 0;	// set them all to 0
-					
-					if (main.dataFilter.r === "active") {
-						thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1) * main.notch);
+
+					// set color channel vals based on this tip speed
+					if (main.dataFilter.tipSpeed === "active") {
+
+						// rgb corresponds to xyz
+						if (main.dataFilter.r === "active") {
+							thisR = (Math.abs(d.tipVelocity[0] * 10).toFixed(1));
+						}
+
+						if (main.dataFilter.g === "active") {
+							thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
+						}
+
+						if (main.dataFilter.b === "active") {
+							thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+						}
+
 					}
 
-					if (main.dataFilter.g === "active") {
-						thisG = (Math.abs(d.tipVelocity[1] * 10).toFixed(1) * main.notch);
-					}
+					// set color channel vals based on this tip position
+					if (main.dataFilter.tipPosition === "active") {
 
-					if (main.dataFilter.b === "active") {
-						thisB = (Math.abs(d.tipVelocity[2] * 10).toFixed(1) * main.notch);
+						// rgb corresponds to xyz
+						if (main.dataFilter.r === "active") {
+							thisR = main.colorScale(Math.abs(d.tipPosition[0]).toFixed(1));
+						}
+
+						if (main.dataFilter.g === "active") {
+							thisG = main.colorScale(Math.abs(d.tipPosition[1]).toFixed(1));
+						}
+
+						if (main.dataFilter.b === "active") {
+							thisB = main.colorScale(Math.abs(d.tipPosition[2]).toFixed(1));
+						}
+
 					}
 
 					return 'rgb( ' + thisR + ', ' + thisG + ', ' + thisB + ' )';

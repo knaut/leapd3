@@ -104,7 +104,7 @@ var main = {
 
 		// init scales
 		this.distanceScale = d3.scale.linear().domain([0, 500]).range([0, 400]);
-		this.colorScale = d3.scale.linear().domain([0, 500]).range([0, 255]);
+		this.colorScale = d3.scale.linear().domain([-250, 250]).range([0, 255]);
 
 		// initialize our dataFilter
 		this.initDataFilter();
@@ -242,15 +242,15 @@ var main = {
 
 						// rgb corresponds to xyz
 						if (main.dataFilter.r === "active") {
-							thisR = main.colorScale(Math.abs(d.tipPosition[0]).toFixed(1));
+							thisR = main.colorScale(d.tipPosition[0]).toFixed(1);
 						}
 
 						if (main.dataFilter.g === "active") {
-							thisG = main.colorScale(Math.abs(d.tipPosition[1]).toFixed(1));
+							thisG = main.colorScale(d.tipPosition[1]).toFixed(1);
 						}
 
 						if (main.dataFilter.b === "active") {
-							thisB = main.colorScale(Math.abs(d.tipPosition[2]).toFixed(1));
+							thisB = main.colorScale(d.tipPosition[2]).toFixed(1);
 						}
 
 					}

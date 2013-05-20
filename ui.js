@@ -5,6 +5,16 @@
 			write to the dom
 */
 
+/* Multi toggle bug diagnosis:
+you're not actually binding the click handler. nowhere is the click handler bound.
+you just change the attributes based on what they were before. that's fine,
+except when the button hits the outer div, it returns that as the event target
+(which it is).
+this might screw things up. we only want to change attrs on click events
+on the buttons, not any ol event that comes around.
+i don't know if this is the exact source of the problem, but perhaps the pattern
+can be improved */
+
 // ui object
 
 var ui = {
@@ -54,6 +64,8 @@ var ui = {
 
 			// give it all the elements it needs to know about
 			uiToggleGroup = new ui.ToggleGroup( thisGroupElements );
+
+			//$(this).buttonset();
 
 		});
 
@@ -113,7 +125,7 @@ var ui = {
 
 		ui.MultiToggle.prototype.eventHandle = function( event ) {
 			console.log('multi-toggle event');
-
+			console.log(event);
 			// do it the easy way first
 			var $thisElem = $(event.target);
 			var thisId = $thisElem.attr('id');
